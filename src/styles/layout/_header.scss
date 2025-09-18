@@ -52,7 +52,7 @@
         svg {
           color: var(--color-text-muted);
         }
-        
+
         &:hover {
           color: var(--color-primary);
         }
@@ -61,20 +61,12 @@
   }
 
   &__nav {
-    .header__nav__list {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-  
-
-  &__nav {
     ul {
       display: flex;
       gap: 24px;
       padding: 10px 20px;
       font-size: 14px;
+      justify-content: center;
 
       li {
         position: relative;
@@ -126,19 +118,5 @@
         }
       }
     }
-  }
-}
-
-/* 🔹 Responsive */
-@media (max-width: 992px) {
-  .header__nav ul {
-    flex-direction: column;
-  }
-  .mega-menu {
-    position: static !important;
-    width: 100% !important;
-  }
-  .header__bottom .header__search input {
-    width: 100%;
   }
 }
