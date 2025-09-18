@@ -5,6 +5,7 @@
 
 @use "@/styles/layout/_footer";
 @use "@/styles/layout/_header";
+@use "@/styles/layout/_headerMobile";
 
 
 :root {

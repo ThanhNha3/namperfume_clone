@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import "@/styles/layout/_header.scss";
+
 import { Heart, Search, ShoppingCart, Store, User } from "lucide-react";
 
 const categories = [
