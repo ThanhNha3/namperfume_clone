@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 /* import SCSS */
+@use "@/styles/common/_index";
+
 @use "@/styles/layout/_footer";
 @use "@/styles/layout/_header";
+@use "@/styles/layout/_headerMobile";
 
 
 :root {
@@ -15,6 +18,7 @@
   --color-bg-white: #ffffff;
   --color-border: #e5e5e5;
   --color-text-muted: #777777;
+  --color-bg-muted: #898889;
 
   /* footer */
   --color-footer-bg: #2d2d2d;      /* nền footer */

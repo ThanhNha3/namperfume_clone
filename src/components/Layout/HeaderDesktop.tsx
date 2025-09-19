@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import "@/styles/layout/_header.scss";
+
 import { Heart, Search, ShoppingCart, Store, User } from "lucide-react";
 
 const categories = [
@@ -28,7 +29,7 @@ const categories = [
     { title: "Son Môi" },
 ];
 
-export default function Header() {
+export default function HeaderDesktop() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
     return (

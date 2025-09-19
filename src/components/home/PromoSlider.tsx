@@ -1,0 +1,72 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { WINDOW_SIZES } from "@/constants/common";
+import { useWindowSize } from "@/hooks/useWindowSize";
+
+const slidesOnDesktop = [
+  { id: 1, src: "/slideshow_1.jpg" },
+  { id: 2, src: "/slideshow_2.jpg" },
+  { id: 3, src: "/slideshow_3.jpg" },
+  { id: 4, src: "/slideshow_4.jpg" },
+];
+
+const slidesOnMobile = [
+  { id: 1, src: "/slideshow_mobile_1.jpg" },
+  { id: 2, src: "/slideshow_mobile_2.jpg" },
+  { id: 3, src: "/slideshow_mobile_3.jpg" },
+  { id: 4, src: "/slideshow_mobile_4.jpg" },
+];
+
+export default function PromoSlider() {
+  const width = useWindowSize();
+  const slides = width >= WINDOW_SIZES.laptop ? slidesOnDesktop : slidesOnMobile;
+
+  const [index, setIndex] = useState(0);
+
+  // Tự động chuyển slide
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  return (
+    <div className="relative w-full h-[400px] lg:h-[600px] overflow-hidden">
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={slides[index].id}
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "-100%" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="absolute top-0 left-0 w-full h-full"
+        >
+          <Image
+            src={slides[index].src}
+            alt={`Slide ${slides[index].id}`}
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Indicator */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`h-[3px] sm:h-[4px] rounded-full transition-all duration-300 ${
+              i === index ? "w-8 bg-white" : "w-4 bg-white/60"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
