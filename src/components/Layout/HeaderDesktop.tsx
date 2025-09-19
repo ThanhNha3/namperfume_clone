@@ -29,7 +29,7 @@ const categories = [
     { title: "Son Môi" },
 ];
 
-export default function Header() {
+export default function HeaderDesktop() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
     return (
