@@ -1,5 +1,9 @@
+import PromoSlider from "@/components/home/PromoSlider";
+
 export default function Home() {
   return (
-    <><h1>Hello World</h1></>
+    <div>
+      <PromoSlider />
+    </div>
   );
 }
