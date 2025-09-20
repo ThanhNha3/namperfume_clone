@@ -1,15 +1,21 @@
 // _variables.scss
-$font-section-header: 'Noto Serif Display', serif;
+$font-section-header: "Noto Serif Display", serif;
 $font-section-header-size: 30px;
-$font-section-header-color: #3A393A;
-$font-section-header-bg: #FFFFFF;
+$font-section-header-color: #3a393a;
+$font-section-header-bg: #ffffff;
 $font-section-header-margin: 40px 0 0 0;
 
-
-span.section-header__text {
+.section-header__text {
   font-family: $font-section-header;
   font-size: $font-section-header-size;
   color: $font-section-header-color;
   background: $font-section-header-bg;
   margin: $font-section-header-margin;
+}
+
+@media screen and (max-width: 820px) {
+  .section-header__text {
+    font-size: 24px;
+    margin: 0;
+  }
 }

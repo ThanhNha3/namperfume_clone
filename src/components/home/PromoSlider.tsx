@@ -4,47 +4,21 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { WINDOW_SIZES } from "@/constants/common";
-import { useWindowSize } from "@/hooks/useWindowSize";
+import { PromoSliderProps } from "@/types/PromoSlider";
 
-const slidesOnDesktop = [
-  { id: 1, src: "/sliders/slideshow_1.jpg" },
-  { id: 2, src: "/sliders/slideshow_2.jpg" },
-  { id: 3, src: "/sliders/slideshow_3.jpg" },
-  { id: 4, src: "/sliders/slideshow_4.jpg" },
-];
-
-const slidesOnMobile = [
-  { id: 1, src: "/sliders/slideshow_mobile_1.jpg" },
-  { id: 2, src: "/sliders/slideshow_mobile_2.jpg" },
-  { id: 3, src: "/sliders/slideshow_mobile_3.jpg" },
-  { id: 4, src: "/sliders/slideshow_mobile_4.jpg" },
-];
-
-export default function PromoSlider() {
-  const width = useWindowSize();
-  const [slides, setSlides] = useState(slidesOnDesktop);
+export default function PromoSlider({ isShowIndicator = true, slides = [], timeTransition = 10000 }: PromoSliderProps) {
 
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
-    }, 10000);
+    }, timeTransition);
     return () => clearInterval(timer);
-  }, [slides.length]);
-
-  useEffect(() => {
-    if (width < WINDOW_SIZES.laptop) {
-      setSlides(slidesOnMobile);
-    }
-    if (width >= WINDOW_SIZES.laptop) {
-      setSlides(slidesOnDesktop);
-    }
-  }, [width])
+  }, [slides.length, timeTransition]);
 
   return (
-    <div className="relative w-full h-[400px] lg:h-[650px] overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden">
       <AnimatePresence initial={false}>
         <motion.div
           key={slides[index].id}
@@ -65,7 +39,7 @@ export default function PromoSlider() {
       </AnimatePresence>
 
       {/* Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      {isShowIndicator && <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -74,7 +48,7 @@ export default function PromoSlider() {
               }`}
           />
         ))}
-      </div>
+      </div>}
     </div>
   );
 }

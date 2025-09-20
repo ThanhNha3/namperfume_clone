@@ -35,7 +35,8 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* tự động nhận diện chế độ light/dark mode trên thiết bị mà dùng màu */
+@media (prefers-color-scheme: dark) { 
   :root {
     --background: #0a0a0a;
     --text-color: #ededed;
