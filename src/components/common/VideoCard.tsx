@@ -18,7 +18,7 @@ export const VideoCard = ({ video }: VideoCardProps) => {
             href={video.link}
             target="_blank" rel="noopener noreferrer"
             key={`${video.id}_${video.title}`}
-            className="min-w-1/4"
+            className="min-w-3/4 lg:w-1/4"
         >
             <div className="w-full h-48 overflow-hidden">
                 <img
