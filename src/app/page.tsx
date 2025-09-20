@@ -9,6 +9,7 @@ import { SectionBrandList } from "@/components/home/SectionBrandList";
 import { SectionProductList } from "@/components/home/SectionProductList";
 import { SectionProductItem } from "@/types/common";
 import { CategoryList } from "@/components/home/CategoryList";
+import { SectionVideoList } from "@/components/home/SectionVideoList";
 
 const brands = [
   { id: 1, name: "Gucci", image: "/brands/logo-brand-gucci.png" },
@@ -189,6 +190,7 @@ export default function Home() {
         <SectionProductList title="Mini Travel Size" items={dummyDatas.miniTravelSize} viewMoreLink="/products" />
         <SectionProductList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" />
         <SectionProductList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" />
+        <SectionVideoList title="namperfume TV" items={[]} viewMoreLink="/videos" />
       </div>
     </div>
   );
