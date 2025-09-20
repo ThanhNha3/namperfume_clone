@@ -133,6 +133,37 @@ type DummyData = Record<
   SectionProductItem[]
 >;
 
+const NAMPERFUME_TV = [
+  {
+    id: 1,
+    thumbnail: "https://i.ytimg.com/vi/3aDs24YQTKo/mqdefault.jpg",
+    link: "https://www.youtube.com/watch?v=3aDs24YQTKo",
+    title: "Những lần hiếm hoi mà diễn viên không phải diễn 🫣 #cuahangvuive #nuochoa #xuhuong #fyp #namperfume",
+    views:1000
+  },
+  {
+    id: 2,
+    thumbnail: "https://i.ytimg.com/vi/xh0pQQqbfHI/mqdefault.jpg",
+    link: "https://www.youtube.com/watch?v=xh0pQQqbfHI",
+    title: `💘Tại sao nước hoa lại có thế "gây thương nhớ"`,
+    views: 2000
+  },
+  {
+    id: 3,
+    thumbnail: "https://i.ytimg.com/vi/3ttq78vGP9o/mqdefault.jpg",
+    link: "https://www.youtube.com/watch?v=3ttq78vGP9o",
+    title: "Mình vô thẳng vấn đề luôn đc hong ạ? 😌 #khomathom #fypシ゚ #nuochoa #namperfume #shorts #videoshort",
+    views: 3234
+  },
+  {
+    id: 4,
+    thumbnail: "https://i.ytimg.com/vi/CwiM9b5BuZQ/mqdefault.jpg",
+    link: "https://www.youtube.com/watch?v=CwiM9b5BuZQ",
+    title: "2 đứa nó chưa từng hỏi Cô Ba Oanh có muốn hay ko😒#khomathom #nuochoa #namperfume #shorts #videoshort",
+    views:3393
+  }
+]
+
 
 
 export default function Home() {
@@ -190,7 +221,7 @@ export default function Home() {
         <SectionProductList title="Mini Travel Size" items={dummyDatas.miniTravelSize} viewMoreLink="/products" />
         <SectionProductList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" />
         <SectionProductList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" />
-        <SectionVideoList title="namperfume TV" items={[]} viewMoreLink="/videos" />
+        <SectionVideoList title="namperfume TV" items={NAMPERFUME_TV} viewMoreLink="/videos" />
       </div>
     </div>
   );

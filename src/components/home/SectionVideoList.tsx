@@ -11,7 +11,8 @@ export interface VideoItem {
   id: number | string;
   thumbnail: string;
   link: string;
-  title:string;
+  title: string;
+  views: number;
 }
 
 interface SectionVideoListProps {
@@ -106,7 +107,7 @@ export function SectionVideoList({ title, items, viewMoreLink }: SectionVideoLis
 
         <div
           ref={containerRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide cursor-grab"
+          className="flex flex-nowrap gap-4 overflow-x-auto scrollbar-hide cursor-grab"
           onMouseDown={(e) => startDrag(e.pageX)}
           onMouseUp={stopDrag}
           onMouseLeave={stopDrag}
@@ -118,10 +119,9 @@ export function SectionVideoList({ title, items, viewMoreLink }: SectionVideoLis
           {items.length === 0
             ? Array.from({ length: 7 }).map((_, i) => <VideoCardSkeleton key={i} />)
             : visibleItems.map((item, index) => (
-                <VideoCard key={`${item.id}-${index}`} video={item} />
-              ))}
+              <VideoCard key={`${item.id}-${index}`} video={item} />
+            ))}
         </div>
-
         <button className="indicator-btn right-0 translate-x-[80%] hidden md:block" onClick={() => scrollByOne("right")}>
           <ChevronRight />
         </button>

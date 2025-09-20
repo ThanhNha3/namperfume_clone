@@ -1,4 +1,4 @@
-import { Heart } from "lucide-react";
+import "@/styles/components/_videoCard.scss"
 
 type VideoCardProps = {
     video: {
@@ -6,6 +6,7 @@ type VideoCardProps = {
         thumbnail: string;
         title: string;
         link?: string;
+        views: number;
     }
 }
 
@@ -13,21 +14,16 @@ export const VideoCard = ({ video }: VideoCardProps) => {
     return (
         <div
             key={`${video.id}-${Math.random()}`}
-            className="min-w-[160px] max-w-[200px] flex-shrink-0 relative px-2"
+            className="min-w-1/4"
         >
-            {/* Icon Heart */}
-            <button className="absolute top-2 right-2 bg-white rounded-full p-1 shadow">
-                <Heart size={16} className="text-gray-600" />
-            </button>
-
-            {/* Product image */}
-            <div className="w-full h-48 flex items-center justify-center">
-                <img src={video.thumbnail} alt={video.title} className="max-h-full object-contain" />
+            <div className="w-full h-48">
+                <img src={video.thumbnail} alt={video.title} width={"100%"} className="max-h-full" />
             </div>
 
             {/* Info */}
-            <div className="mt-2 text-center">
-                <h4 className="font-bold text-xs uppercase truncate">{video.title}</h4>
+            <div className="video-info mt-2 pt-2 px-4 w-full flex flex-col justify-between">
+                <h4 className="video-title text-xs uppercase">{video.title}</h4>
+                <span className="text-xs text-[var(--color-bg-muted)]">{video.views} Views</span>
             </div>
         </div>
     );
