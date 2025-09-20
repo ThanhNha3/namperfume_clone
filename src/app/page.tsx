@@ -7,6 +7,7 @@ import { WINDOW_SIZES } from "@/constants/common";
 import { PromoSlider } from "@/components/home/PromoSlider";
 import { SectionBrandList } from "@/components/home/SectionBrandList";
 import { SectionProductList } from "@/components/home/SectionProductList";
+import { SectionProductItem } from "@/types/common";
 
 const brands = [
   { id: 1, name: "Gucci", image: "/brands/logo-brand-gucci.png" },
@@ -93,15 +94,50 @@ const MINI_TRAVEL_SIZE_PRODUCTS = [
   },
 ]
 
+const BODYCARE_HOMECARE_PRODUCTS = [
+  {
+    id: 1,
+    image: "/products/p5.jpg",
+    name: "Sữa tắm Bath & Body Works",
+    title: "Sữa tắm Bath & Body Works",
+    subtitle: "295ml - Shower Gel",
+    price: "350.000₫",
+    badges: ["Yêu thích"],
+    sizes: ["295ml", "500ml"],
+  },
+]
+
+const GIFTSET_PRODUCTS = [
+  {
+    id: 1,
+    image: "/products/p6.jpg",
+    name: "Giftset Nước hoa Dior",
+    title: "Giftset Nước hoa Dior",
+    subtitle: "Bao gồm 3 món",
+    price: "4.500.000₫",
+    badges: ["Yêu thích", "Bán chạy"],
+    sizes: [],
+  },
+]
+
+type DummyData = Record<
+  "dealThom" | "newArrival" | "bestSeller" | "miniTravelSize" | "bodycareHomecare" | "giftset",
+  SectionProductItem[]
+>;
+
+
+
 export default function Home() {
   // STATES
   const [slides, setSlides] = useState(slidesOnDesktop);
 
-  const [dummyDatas, setDummyDatas] = useState({
+  const [dummyDatas, setDummyDatas] = useState<DummyData>({
     dealThom: DEAL_THOM_PRODUCTS,
     newArrival: NEW_ARRIVAL_PRODUCTS,
     bestSeller: BEST_SELLER_PRODUCTS,
     miniTravelSize: MINI_TRAVEL_SIZE_PRODUCTS,
+    bodycareHomecare: BODYCARE_HOMECARE_PRODUCTS,
+    giftset: GIFTSET_PRODUCTS,
   })
 
   // HOOKS
@@ -122,7 +158,6 @@ export default function Home() {
       (Object.keys(prev) as (keyof typeof prev)[]).forEach((key) => {
         const original = prev[key];
         const baseItem = original[0];
-
         newData[key] = Array.from({ length: 10 }, (_, index) => ({
           ...baseItem,
           id: index + 1,
@@ -141,11 +176,11 @@ export default function Home() {
       <div className="container mx-auto px-4 lg:px-0 flex flex-col gap-8 my-8">
         <SectionBrandList title="Thương hiệu" items={brands} viewMoreLink="/brands" />
         <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
-        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
-        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
-        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
-        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
-        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
+        <SectionProductList title="New Arrivals" items={dummyDatas.newArrival} viewMoreLink="/products" />
+        <SectionProductList title="Best Sellers" items={dummyDatas.bestSeller} viewMoreLink="/products" />
+        <SectionProductList title="Mini Travel Size" items={dummyDatas.miniTravelSize} viewMoreLink="/products" />
+        <SectionProductList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" />
+        <SectionProductList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" />
       </div>
     </div>
   );

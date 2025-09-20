@@ -2,8 +2,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import "@/styles/components/_sectionList.scss";
-import { SectionListProductProps, SectionProductItem } from "@/types/section";
-import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
+import { SectionListProductProps } from "@/types/section";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Product } from "../common/Product";
+import { SectionProductItem } from "@/types/common";
+import { ProductSkeleton } from "../common/ProductSkeleton";
 
 export function SectionProductList({ title, items, viewMoreLink }: SectionListProductProps) {
   const [visibleItems, setVisibleItems] = useState<SectionProductItem[]>([]);
@@ -90,7 +93,7 @@ export function SectionProductList({ title, items, viewMoreLink }: SectionListPr
       {/* Wrapper để nút dính sát slider */}
       <div className="relative">
         {/* Nút trái */}
-        <button className="indicator-btn left-0 translate-x-[-80%] d-none md:d-block" onClick={() => scrollByOne("left")}>
+        <button className="indicator-btn left-0 translate-x-[-80%] hidden md:block" onClick={() => scrollByOne("left")}>
           <ChevronLeft />
         </button>
 
@@ -106,48 +109,15 @@ export function SectionProductList({ title, items, viewMoreLink }: SectionListPr
           onTouchEnd={stopDrag}
           onTouchMove={(e) => onDrag(e.touches[0].pageX)}
         >
-          {visibleItems.map((item, index) => (
-            <div
-              key={`${item.id}-${index}`}
-              className="min-w-[160px] max-w-[200px] flex-shrink-0 relative px-2"
-            >
-              {/* Icon Heart */}
-              <button className="absolute top-2 right-2 bg-white rounded-full p-1 shadow">
-                <Heart size={16} className="text-gray-600" />
-              </button>
-
-              {/* Badge */}
-              <div className="absolute top-2 left-2 flex flex-col gap-1">
-                {item.badges?.map((badge, i) => (
-                  <span
-                    key={i}
-                    className="bg-[var(--color-badge)] text-white text-[10px] px-1 py-0.5 rounded"
-                  >
-                    {badge}
-                  </span>
-                ))}
-              </div>
-
-              {/* Product image */}
-              <div className="w-full h-48 flex items-center justify-center">
-                <img src={item.image} alt={item.name} className="max-                                                                                                                                                                                                                                                                 h-full object-contain" />
-              </div>
-
-              {/* Info */}
-              <div className="mt-2 text-center">
-                <h4 className="font-bold text-xs uppercase truncate">{item.subtitle}</h4>
-                <p className="text-xs text-gray-700 line-clamp-2">{item.name}</p>
-                <p className="text-red-600 font-semibold text-xs">{item.price}</p>
-                <p className="text-xs text-gray-500">
-                  {`${item.sizes?.length} size${item.sizes?.length !== 1 ? "s" : ""}`}
-                </p>
-              </div>
-            </div>
-          ))}
+          {items.length === 0
+            ? Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
+            : visibleItems.map((item, index) => (
+              <Product key={`${item.id}-${index}`} product={item} />
+            ))}
         </div>
 
         {/* Nút phải */}
-        <button className="indicator-btn right-0 translate-x-[80%] d-none md:d-block" onClick={() => scrollByOne("right")}>
+        <button className="indicator-btn right-0 translate-x-[80%] hidden md:block" onClick={() => scrollByOne("right")}>
           <ChevronRight />
         </button>
       </div>
