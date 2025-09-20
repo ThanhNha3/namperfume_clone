@@ -8,6 +8,7 @@ import { PromoSlider } from "@/components/home/PromoSlider";
 import { SectionBrandList } from "@/components/home/SectionBrandList";
 import { SectionProductList } from "@/components/home/SectionProductList";
 import { SectionProductItem } from "@/types/common";
+import { CategoryList } from "@/components/home/CategoryList";
 
 const brands = [
   { id: 1, name: "Gucci", image: "/brands/logo-brand-gucci.png" },
@@ -120,6 +121,12 @@ const GIFTSET_PRODUCTS = [
   },
 ]
 
+const BANNER_CATEGORY = [
+  { id: 1, name: "Nước hoa nam", url: "/banners/banner-nam-desk.jpg" },
+  { id: 2, name: "Nước hoa nữ", url: "/banners/banner-nu-desk.jpg" },
+  { id: 3, name: "Nước hoa niche", url: "/banners/banner-niche-desk.jpg" },
+]
+
 type DummyData = Record<
   "dealThom" | "newArrival" | "bestSeller" | "miniTravelSize" | "bodycareHomecare" | "giftset",
   SectionProductItem[]
@@ -178,6 +185,7 @@ export default function Home() {
         <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
         <SectionProductList title="New Arrivals" items={dummyDatas.newArrival} viewMoreLink="/products" />
         <SectionProductList title="Best Sellers" items={dummyDatas.bestSeller} viewMoreLink="/products" />
+        <CategoryList items={BANNER_CATEGORY} />
         <SectionProductList title="Mini Travel Size" items={dummyDatas.miniTravelSize} viewMoreLink="/products" />
         <SectionProductList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" />
         <SectionProductList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" />
