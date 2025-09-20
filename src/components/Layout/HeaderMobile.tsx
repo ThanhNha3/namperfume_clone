@@ -43,7 +43,7 @@ const HeaderMobile: React.FC = () => {
       <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200">
         <Bell size={20} className="text-gray-700" />
         <Link href="/" className="header__logo">
-          <Image src="/logo.svg" alt="NamPerfume Logo" width={150} height={40} priority />
+          <Image src="/common/logo.svg" alt="NamPerfume Logo" width={150} height={40} priority />
         </Link>
         <div className="flex items-center gap-4">
           <Search size={20} className="text-gray-700" />
