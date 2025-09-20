@@ -46,7 +46,12 @@ $font-style: "Noto Serif Display", serif;
       color: #000;
 
       .about__tab__icon {
-        border-color: #000;
+        // border-color: #000;
+        background: var(--color-primary);
+
+        svg {
+          color: var(--color-bg-white);
+        }
       }
     }
   }
