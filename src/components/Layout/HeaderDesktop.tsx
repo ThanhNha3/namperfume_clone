@@ -46,7 +46,7 @@ export default function HeaderDesktop() {
             <div className="header__bottombar">
                 <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0">
                     <Link href="/" className="header__logo">
-                        <Image src="/logo.svg" alt="NamPerfume Logo" width={150} height={40} priority />
+                        <Image src="/common/logo.svg" alt="NamPerfume Logo" width={150} height={40} priority />
                     </Link>
                     <div className="header__search flex-1 px-6">
                         <div className="relative flex items-center border border-[var(--color-border)] rounded px-4">

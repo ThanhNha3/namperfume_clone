@@ -3,39 +3,48 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+
 import { WINDOW_SIZES } from "@/constants/common";
 import { useWindowSize } from "@/hooks/useWindowSize";
 
 const slidesOnDesktop = [
-  { id: 1, src: "/slideshow_1.jpg" },
-  { id: 2, src: "/slideshow_2.jpg" },
-  { id: 3, src: "/slideshow_3.jpg" },
-  { id: 4, src: "/slideshow_4.jpg" },
+  { id: 1, src: "/sliders/slideshow_1.jpg" },
+  { id: 2, src: "/sliders/slideshow_2.jpg" },
+  { id: 3, src: "/sliders/slideshow_3.jpg" },
+  { id: 4, src: "/sliders/slideshow_4.jpg" },
 ];
 
 const slidesOnMobile = [
-  { id: 1, src: "/slideshow_mobile_1.jpg" },
-  { id: 2, src: "/slideshow_mobile_2.jpg" },
-  { id: 3, src: "/slideshow_mobile_3.jpg" },
-  { id: 4, src: "/slideshow_mobile_4.jpg" },
+  { id: 1, src: "/sliders/slideshow_mobile_1.jpg" },
+  { id: 2, src: "/sliders/slideshow_mobile_2.jpg" },
+  { id: 3, src: "/sliders/slideshow_mobile_3.jpg" },
+  { id: 4, src: "/sliders/slideshow_mobile_4.jpg" },
 ];
 
 export default function PromoSlider() {
   const width = useWindowSize();
-  const slides = width >= WINDOW_SIZES.laptop ? slidesOnDesktop : slidesOnMobile;
+  const [slides, setSlides] = useState(slidesOnDesktop);
 
   const [index, setIndex] = useState(0);
 
-  // Tự động chuyển slide
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
+  useEffect(() => {
+    if (width < WINDOW_SIZES.laptop) {
+      setSlides(slidesOnMobile);
+    }
+    if (width >= WINDOW_SIZES.laptop) {
+      setSlides(slidesOnDesktop);
+    }
+  }, [width])
+
   return (
-    <div className="relative w-full h-[400px] lg:h-[600px] overflow-hidden">
+    <div className="relative w-full h-[400px] lg:h-[650px] overflow-hidden">
       <AnimatePresence initial={false}>
         <motion.div
           key={slides[index].id}
@@ -61,9 +70,8 @@ export default function PromoSlider() {
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`h-[3px] sm:h-[4px] rounded-full transition-all duration-300 ${
-              i === index ? "w-8 bg-white" : "w-4 bg-white/60"
-            }`}
+            className={`h-[3px] sm:h-[4px] rounded-full transition-all duration-300 ${i === index ? "w-8 bg-white" : "w-4 bg-white/60"
+              }`}
           />
         ))}
       </div>
