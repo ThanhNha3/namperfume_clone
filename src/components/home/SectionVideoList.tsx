@@ -12,7 +12,7 @@ export interface VideoItem {
   thumbnail: string;
   link: string;
   title: string;
-  views: number;
+  views?: number;
 }
 
 interface SectionVideoListProps {

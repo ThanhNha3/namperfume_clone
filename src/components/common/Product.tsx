@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 export const Product = ({ product }: { product: SectionProductItem }) => {
     return (
         <div
-            key={`${product.id}-${Math.random()}`}
+            key={`${product.id}_${product.name}}`}
             className="min-w-[160px] max-w-[200px] flex-shrink-0 relative px-2"
         >
             {/* Icon Heart */}
@@ -33,8 +33,8 @@ export const Product = ({ product }: { product: SectionProductItem }) => {
             <div className="mt-2 text-center">
                 <h4 className="font-bold text-xs uppercase truncate">{product.subtitle}</h4>
                 <p className="text-xs text-gray-700 line-clamp-2">{product.name}</p>
-                <p className="text-red-600 font-semibold text-xs">{product.price}</p>
-                <p className="text-xs text-gray-500">
+                <p className="text-red-600 font-semibold text-xs pt-2">{product.price}</p>
+                <p className="text-xs text-gray-500 pt-2">
                     {`${product.sizes?.length} size${product.sizes?.length !== 1 ? "s" : ""}`}
                 </p>
             </div>

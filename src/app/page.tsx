@@ -10,6 +10,7 @@ import { SectionProductList } from "@/components/home/SectionProductList";
 import { SectionProductItem } from "@/types/common";
 import { CategoryList } from "@/components/home/CategoryList";
 import { SectionVideoList } from "@/components/home/SectionVideoList";
+import AboutNamPerfume from "@/components/home/AboutNamPerfume";
 
 const brands = [
   { id: 1, name: "Gucci", image: "/brands/logo-brand-gucci.png" },
@@ -139,7 +140,7 @@ const NAMPERFUME_TV = [
     thumbnail: "https://i.ytimg.com/vi/3aDs24YQTKo/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=3aDs24YQTKo",
     title: "Những lần hiếm hoi mà diễn viên không phải diễn 🫣 #cuahangvuive #nuochoa #xuhuong #fyp #namperfume",
-    views:1000
+    views: 1000
   },
   {
     id: 2,
@@ -160,10 +161,36 @@ const NAMPERFUME_TV = [
     thumbnail: "https://i.ytimg.com/vi/CwiM9b5BuZQ/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=CwiM9b5BuZQ",
     title: "2 đứa nó chưa từng hỏi Cô Ba Oanh có muốn hay ko😒#khomathom #nuochoa #namperfume #shorts #videoshort",
-    views:3393
+    views: 3393
   }
 ]
 
+const NMAGAZINE = [
+  {
+    id: 1,
+    thumbnail: "https://file.hstatic.net/1000340570/article/banner-thuong-hieu-lattafa_37643b6cd970492ab353b44e15a6ad7e.jpeg",
+    link: "/",
+    title: "LATTAFA",
+  },
+  {
+    id: 2,
+    thumbnail: "https://file.hstatic.net/1000340570/article/kajal_c7b2b434926442468c73a8039d41e8cd.jpg",
+    link: "/",
+    title: `KAJAH`,
+  },
+  {
+    id: 3,
+    thumbnail: "https://file.hstatic.net/1000340570/article/z5579431254972_ef70cc6ef78fa5754d14e9bea82b11a9_86d749ee72ae4f1dae664531022e9111.jpg",
+    link: "/",
+    title: "GRITTI",
+  },
+  {
+    id: 4,
+    thumbnail: "https://file.hstatic.net/1000340570/article/zaroff-banner-thuong-hieu_9824109c0f914447a2f064817078e88f.jpg",
+    link: "/",
+    title: "ZAROFF",
+  }
+]
 
 
 export default function Home() {
@@ -212,7 +239,7 @@ export default function Home() {
       <div className="h-[400px] lg:h-[650px]">
         <PromoSlider isShowIndicator={true} slides={slides} />
       </div>
-      <div className="container mx-auto px-4 lg:px-0 flex flex-col gap-8 my-8">
+      <div className="container mx-auto px-4 lg:px-0 flex flex-col gap-6 my-8">
         <SectionBrandList title="Thương hiệu" items={brands} viewMoreLink="/brands" />
         <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
         <SectionProductList title="New Arrivals" items={dummyDatas.newArrival} viewMoreLink="/products" />
@@ -222,7 +249,9 @@ export default function Home() {
         <SectionProductList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" />
         <SectionProductList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" />
         <SectionVideoList title="namperfume TV" items={NAMPERFUME_TV} viewMoreLink="/videos" />
+        <SectionVideoList title="Nmagazine" items={NMAGAZINE} viewMoreLink="/videos" />
       </div>
+      <AboutNamPerfume />
     </div>
   );
 }
