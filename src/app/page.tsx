@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 
-import PromoSlider from "@/components/home/PromoSlider";
-import { WINDOW_SIZES } from "@/constants/common";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { WINDOW_SIZES } from "@/constants/common";
+import { PromoSlider } from "@/components/home/PromoSlider";
 import { SectionBrandList } from "@/components/home/SectionBrandList";
+import { SectionProductList } from "@/components/home/SectionProductList";
 
 const brands = [
   { id: 1, name: "Gucci", image: "/brands/logo-brand-gucci.png" },
@@ -40,11 +41,71 @@ const slidesOnMobile = [
   { id: 4, src: "/sliders/slideshow_mobile_4.jpg" },
 ];
 
+const DEAL_THOM_PRODUCTS = [
+  {
+    id: 1,
+    image: "/products/p1.jpg",
+    name: "Nước hoa Dior Sauvage EDP",
+    title: "Nước hoa Dior Sauvage EDP",
+    subtitle: "100ml - Eau de Parfum",
+    price: "3.200.000₫",
+    badges: ["Yêu thích", "Bán chạy"],
+    sizes: ["50ml", "100ml", "150ml"],
+  },
+]
+
+const NEW_ARRIVAL_PRODUCTS = [
+  {
+    id: 1,
+    image: "/products/p2.jpg",
+    name: "Nước hoa Chanel Bleu De Chanel EDT",
+    title: "Nước hoa Chanel Bleu De Chanel EDT",
+    subtitle: "100ml - Eau de Toilette",
+    price: "2.800.000₫",
+    badges: ["Mới"],
+    sizes: ["50ml", "100ml"],
+  },
+]
+
+const BEST_SELLER_PRODUCTS = [
+  {
+    id: 1,
+    image: "/products/p3.jpg",
+    name: "Nước hoa Versace Eros Pour Homme",
+    title: "Nước hoa Versace Eros Pour Homme",
+    subtitle: "100ml - Eau de Toilette",
+    price: "2.500.000₫",
+    badges: ["Bán chạy"],
+    sizes: ["50ml", "100ml", "150ml"],
+  },
+]
+
+const MINI_TRAVEL_SIZE_PRODUCTS = [
+  {
+    id: 1,
+    image: "/products/p4.jpg",
+    name: "Nước hoa Gucci Guilty Pour Homme",
+    title: "Nước hoa Gucci Guilty Pour Homme",
+    subtitle: "90ml - Eau de Toilette",
+    price: "2.700.000₫",
+    badges: ["Yêu thích"],
+    sizes: ["50ml", "90ml"],
+  },
+]
+
 export default function Home() {
+  // STATES
   const [slides, setSlides] = useState(slidesOnDesktop);
 
-  const width = useWindowSize();
+  const [dummyDatas, setDummyDatas] = useState({
+    dealThom: DEAL_THOM_PRODUCTS,
+    newArrival: NEW_ARRIVAL_PRODUCTS,
+    bestSeller: BEST_SELLER_PRODUCTS,
+    miniTravelSize: MINI_TRAVEL_SIZE_PRODUCTS,
+  })
 
+  // HOOKS
+  const width = useWindowSize();
   useEffect(() => {
     if (width < WINDOW_SIZES.laptop) {
       setSlides(slidesOnMobile);
@@ -54,13 +115,37 @@ export default function Home() {
     }
   }, [width])
 
+  useEffect(() => {
+    setDummyDatas((prev) => {
+      const newData = { ...prev };
+
+      (Object.keys(prev) as (keyof typeof prev)[]).forEach((key) => {
+        const original = prev[key];
+        const baseItem = original[0];
+
+        newData[key] = Array.from({ length: 10 }, (_, index) => ({
+          ...baseItem,
+          id: index + 1,
+        }));
+      });
+
+      return newData;
+    });
+  }, []);
+
   return (
     <div>
       <div className="h-[400px] lg:h-[650px]">
         <PromoSlider isShowIndicator={true} slides={slides} />
       </div>
-      <div className="container mx-auto px-4 lg:px-0">
+      <div className="container mx-auto px-4 lg:px-0 flex flex-col gap-8 my-8">
         <SectionBrandList title="Thương hiệu" items={brands} viewMoreLink="/brands" />
+        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
+        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
+        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
+        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
+        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
+        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
       </div>
     </div>
   );

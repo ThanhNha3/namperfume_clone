@@ -4,7 +4,7 @@ import React from "react";
 
 import "@/styles/components/_sectionList.scss";
 import { SectionListProps } from "@/types/section";
-import PromoSlider from "./PromoSlider";
+import { PromoSlider } from "./PromoSlider";
 
 const slidesOnDesktop = [
     { id: 1, src: "/sliders/banner_brand_image_section_01.jpg" },
@@ -12,11 +12,7 @@ const slidesOnDesktop = [
     { id: 3, src: "/sliders/banner_brand_image_section_03.jpg" },
 ];
 
-export const SectionBrandList: React.FC<SectionListProps> = ({
-    title,
-    items,
-    viewMoreLink,
-}) => {
+export function SectionBrandList({ title, items, viewMoreLink }: SectionListProps) {
     return (
         <section>
             {/* Header */}

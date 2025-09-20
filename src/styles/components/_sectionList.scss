@@ -5,6 +5,11 @@ $font-section-header-color: #3a393a;
 $font-section-header-bg: #ffffff;
 $font-section-header-margin: 40px 0 0 0;
 
+$--color-badge: var(--color-primary); // Màu cam đỏ cho badge
+
+
+
+
 .section-header__text {
   font-family: $font-section-header;
   font-size: $font-section-header-size;
@@ -12,6 +17,54 @@ $font-section-header-margin: 40px 0 0 0;
   background: $font-section-header-bg;
   margin: $font-section-header-margin;
 }
+
+.section-header__view-more {
+  font-size: 14px;
+  color: #4a4a4a;
+  cursor: pointer;
+
+  svg {
+    height: 16px;
+    width: 16px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.indicator-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  color: #4a4a4a;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 30px;
+  width: 50px;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border: none;
+  }
+}
+
 
 @media screen and (max-width: 820px) {
   .section-header__text {

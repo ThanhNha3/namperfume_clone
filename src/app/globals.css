@@ -3,9 +3,7 @@
 /* import SCSS */
 @use "@/styles/common/_index";
 
-@use "@/styles/layout/_footer";
-@use "@/styles/layout/_header";
-@use "@/styles/layout/_headerMobile";
+@use "@/styles/main";
 
 
 :root {

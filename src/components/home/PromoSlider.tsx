@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { PromoSliderProps } from "@/types/PromoSlider";
 
-export default function PromoSlider({ isShowIndicator = true, slides = [], timeTransition = 10000 }: PromoSliderProps) {
+export function PromoSlider({ isShowIndicator = true, slides = [], timeTransition = 10000 }: PromoSliderProps) {
 
   const [index, setIndex] = useState(0);
 
