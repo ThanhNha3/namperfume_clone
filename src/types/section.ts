@@ -1,5 +1,8 @@
 // types/section.ts
 
+import { SectionMediaItem } from "./media";
+import { SectionProductItem } from "./product";
+
 export interface SectionItem {
     id: number | string;
     name: string;
@@ -7,36 +10,10 @@ export interface SectionItem {
     link?: string;
 }
 
-// PRODUCT TYPES
-
-export interface SectionProductItem extends SectionItem {
-    title: string;
-    subtitle: string;
-    price: string;
-    badges?: string[];
-    sizes?: string[];
-}
-
-export interface SectionMediaCardProps {
-    id: number;
-    thumbnail: string;
-    title: string;
-    link: string;
-    views?: number;
-}
-
-// MEDIA TYPES
-export interface SectionVideoItem extends SectionItem {
-    thumbnail: string;
-    title: string;
-    link: string;
-    views?: number;
-}
-
 // SECTION LIST PROPS
 export interface SectionListProps {
     title: string;
-    items: SectionItem[] | SectionProductItem[] | SectionVideoItem[];
+    items: SectionItem[] | SectionProductItem[] | SectionMediaItem[];
     viewMoreLink?: string;
 }
 

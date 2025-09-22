@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { PromoSliderProps } from "@/types/PromoSlider";
+import { PromoSliderProps } from "@/types/promo_slider";
 
 export function PromoSlider({ 
   isShowIndicator = true, 

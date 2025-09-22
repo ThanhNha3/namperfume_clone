@@ -4,9 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import "@/styles/components/_sectionList.scss";
-import { SectionListDataProps, SectionProductItem, SectionVideoItem } from "@/types/section";
+import { SectionListDataProps, SectionProductItem, SectionMediaItem } from "@/types/section";
 
-export function SectionDataList<T extends SectionProductItem | SectionVideoItem>({
+export function SectionDataList<T extends SectionProductItem | SectionMediaItem>({
   title,
   items,
   viewMoreLink,
