@@ -189,7 +189,7 @@ const NMAGAZINE = [
     thumbnail: "https://file.hstatic.net/1000340570/article/zaroff-banner-thuong-hieu_9824109c0f914447a2f064817078e88f.jpg",
     link: "/",
     title: "ZAROFF",
-  }
+  },
 ]
 
 

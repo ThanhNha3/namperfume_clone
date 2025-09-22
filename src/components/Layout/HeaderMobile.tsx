@@ -57,7 +57,7 @@ const HeaderMobile: React.FC = () => {
       </div>
 
       {/* Banner nhỏ */}
-      <div className="w-full bg-[var(--color-bg-muted)] text-center text-xs py-2">
+      <div className="w-full bg-[var(--color-bg-muted)] text-center text-xs py-2 text-[var(--color-bg-white)]">
         {promoMessages[index]}
       </div>
 

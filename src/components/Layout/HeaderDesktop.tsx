@@ -8,25 +8,69 @@ import "@/styles/layout/_header.scss";
 
 import { Heart, Search, ShoppingCart, Store, User } from "lucide-react";
 
-const categories = [
+type Category = {
+    key: string;
+    title: string;
+    type?: "highlight";
+    mega?: {
+        categories: {
+            key: string;
+            label: string;
+        }[];
+        brands?: string[];
+        banners?: string[];
+    };
+}
+
+const categories: Category[] = [
     {
+        key: "favorites",
         title: "namperfume Favorites",
-        type: "highlight",
-        mega: {
-            left: ["Mới nhất", "Yêu thích nhất", "Nước hoa Niche", "Giftset", "Nước Hoa Unisex", "Nước Hoa Mini"],
-            brands: ["GUCCI", "CALVIN KLEIN", "CHANEL", "BVLGARI", "VERSACE", "VALENTINO", "HUGO BOSS", "YSL"],
-            images: ["/images/gucci.jpg", "/images/olympea.jpg", "/images/valentino.jpg"],
+        type: "highlight"
+    },
+    {
+        key: "deal_thom",
+        title: "Deal Thơm",
+    },
+    {
+        key: "nuoc_hoa_nam", title: "Nước Hoa Nam", mega: {
+            categories: [
+                {
+                    key: "new",
+                    label: "Mới nhất"
+                },
+                {
+                    key: "favorite",
+                    label: "Yêu thích nhất"
+                },
+                {
+                    key: "niche",
+                    label: "Nước hoa Niche"
+                },
+                {
+                    key: "giftset",
+                    label: "Giftset"
+                },
+                {
+                    key: "unisex",
+                    label: "Nước Hoa Unisex"
+                },
+                {
+                    key: "mini",
+                    label: "Nước Hoa Mini"
+                }
+            ],
+            brands: ["GUCCI", "CALVIN KLEIN", "CHANEL", "BVLGARI", "VERSACE", "VALENTINO", "HUGO BOSS", "YSL", "DIOR", "TOM FORD", "BURBERRY", "PRADA", "LANCOME", "ARMANI", "FERRAGAMO", "MONTBLANC", "RALPH LAUREN", "HERMES", "CREED", "JO MALONE", "DOLCE & GABBANA"],
+            banners: ["/menu/menu_hover_nam_1.jpg", "/menu/menu_hover_nam_2.jpg", "/menu/menu_hover_nam_3.jpg"],
         },
     },
-    { title: "Deal Thơm" },
-    { title: "Nước Hoa Nam" },
-    { title: "Nước Hoa Nữ" },
-    { title: "Nước Hoa Mini" },
-    { title: "Giftset" },
-    { title: "Nước Hoa Niche" },
-    { title: "Thương Hiệu" },
-    { title: "Bodycare & Homecare" },
-    { title: "Son Môi" },
+    { key: "nuoc_hoa_nu", title: "Nước Hoa Nữ" },
+    { key: "nuoc_hoa_mini", title: "Nước Hoa Mini" },
+    { key: "giftset", title: "Giftset" },
+    { key: "nuoc_hoa_niche", title: "Nước Hoa Niche" },
+    { key: "thuong_hieu", title: "Thương Hiệu" },
+    { key: "bodycare_homecare", title: "Bodycare & Homecare" },
+    { key: "son_moi", title: "Son Môi" },
 ];
 
 export default function HeaderDesktop() {
@@ -96,32 +140,43 @@ export default function HeaderDesktop() {
             <nav className="header__nav">
                 <div className="container mx-auto px-4 lg:px-0">
                     <ul className="header__nav__list">
-                        {categories.map((cat) => (
+                        {categories.map((category) => (
                             <li
-                                key={cat.title}
-                                onMouseEnter={() => setActiveMenu(cat.title)}
+                                key={category.title}
+                                onMouseEnter={() => setActiveMenu(category.key)}
                                 onMouseLeave={() => setActiveMenu(null)}
-                                className={cat.type === "highlight" ? "highlight" : ""}
+                                className={category.type === "highlight" ? "highlight" : ""}
                             >
-                                <Link href="#">{cat.title}</Link>
+                                <Link href="#">{category.title}</Link>
 
                                 {/* Mega menu */}
-                                {cat.mega && activeMenu === cat.title && (
+                                {category.mega && category.key === activeMenu && (
                                     <div className="mega-menu">
                                         <div className="mega-menu__content">
-                                            <div className="mega-menu__left">
-                                                {cat.mega.left.map((item) => (
-                                                    <p key={item}>{item}</p>
-                                                ))}
+                                            {category.mega.categories && (<div className="mega-menu__categories">
+                                                <h4 className="mega-menu__title">Phân loại</h4>
+                                                <ul className="mega-menu__categories-list">
+                                                    {category.mega.categories.map((item) => (
+                                                        <li key={item.key}>{item.label}</li>
+                                                    ))}
+                                                </ul>
                                             </div>
-                                            <div className="mega-menu__brands">
-                                                {cat.mega.brands.map((brand) => (
-                                                    <p key={brand}>{brand}</p>
-                                                ))}
-                                            </div>
+                                            )}
+                                            {category.mega.brands && (
+                                                <div className="mega-menu__brands">
+                                                    <h4 className="mega-menu__title">Thương hiệu</h4>
+                                                    <ul className="mega-menu__brands-list">
+                                                        {category?.mega?.brands?.map((brand) => (
+                                                            <li key={brand}>{brand}</li>
+                                                        ))}
+                                                    </ul>
+                                                    <Link href="/brands" className="mega-menu__view-all">
+                                                        Xem tất cả
+                                                    </Link>
+                                                </div>)}
                                             <div className="mega-menu__images">
-                                                {cat.mega.images.map((img, i) => (
-                                                    <Image key={i} src={img} alt="brand" width={150} height={180} />
+                                                {category?.mega?.banners?.map((img, i) => (
+                                                    <Image key={i} src={img} alt="brand" width={250} height={280} />
                                                 ))}
                                             </div>
                                         </div>
@@ -131,7 +186,7 @@ export default function HeaderDesktop() {
                         ))}
                     </ul>
                 </div>
-            </nav>
-        </div>
+            </nav >
+        </div >
     );
 }
