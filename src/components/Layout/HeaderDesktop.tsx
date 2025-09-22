@@ -3,26 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Heart, Search, ShoppingCart, Store, User } from "lucide-react";
 
 import "@/styles/layout/_header.scss";
 
-import { Heart, Search, ShoppingCart, Store, User } from "lucide-react";
+import { HeaderCategory } from "@/types/category";
 
-type Category = {
-    key: string;
-    title: string;
-    type?: "highlight";
-    mega?: {
-        categories: {
-            key: string;
-            label: string;
-        }[];
-        brands?: string[];
-        banners?: string[];
-    };
-}
-
-const categories: Category[] = [
+const categories: HeaderCategory[] = [
     {
         key: "favorites",
         title: "namperfume Favorites",
@@ -153,30 +140,44 @@ export default function HeaderDesktop() {
                                 {category.mega && category.key === activeMenu && (
                                     <div className="mega-menu">
                                         <div className="mega-menu__content">
-                                            {category.mega.categories && (<div className="mega-menu__categories">
-                                                <h4 className="mega-menu__title">Phân loại</h4>
-                                                <ul className="mega-menu__categories-list">
-                                                    {category.mega.categories.map((item) => (
-                                                        <li key={item.key}>{item.label}</li>
-                                                    ))}
-                                                </ul>
-                                            </div>
+                                            {/* Phân loại */}
+                                            {category.mega.categories && (
+                                                <div className="mega-menu__categories">
+                                                    <h4 className="mega-menu__title">Phân loại</h4>
+                                                    <ul className="mega-menu__categories-list mb-2">
+                                                        {category.mega.categories.slice(0, 12).map((item) => (
+                                                            <li key={item.key}>{item.label}</li>
+                                                        ))}
+                                                    </ul>
+                                                    {category.mega.categories.length > 7 && (
+                                                        <Link href="/categories" className="mega-menu__view-all">
+                                                            Xem tất cả
+                                                        </Link>
+                                                    )}
+                                                </div>
                                             )}
+
+                                            {/* Thương hiệu */}
                                             {category.mega.brands && (
                                                 <div className="mega-menu__brands">
                                                     <h4 className="mega-menu__title">Thương hiệu</h4>
-                                                    <ul className="mega-menu__brands-list">
-                                                        {category?.mega?.brands?.map((brand) => (
+                                                    <ul className="mega-menu__brands-list grid-cols-2">
+                                                        {category.mega.brands.slice(0, 12).map((brand) => (
                                                             <li key={brand}>{brand}</li>
                                                         ))}
                                                     </ul>
-                                                    <Link href="/brands" className="mega-menu__view-all">
-                                                        Xem tất cả
-                                                    </Link>
-                                                </div>)}
+                                                    {category.mega.brands.length > 7 && (
+                                                        <Link href="/brands" className="mega-menu__view-all">
+                                                            Xem tất cả
+                                                        </Link>
+                                                    )}
+                                                </div>
+                                            )}
+
+                                            {/* Banner */}
                                             <div className="mega-menu__images">
                                                 {category?.mega?.banners?.map((img, i) => (
-                                                    <Image key={i} src={img} alt="brand" width={250} height={280} />
+                                                    <Image key={i} src={img} alt="brand" width={250} height={120} />
                                                 ))}
                                             </div>
                                         </div>
