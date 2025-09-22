@@ -4,13 +4,23 @@ import { useState, useEffect } from "react";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { WINDOW_SIZES } from "@/constants/common";
-import { PromoSlider } from "@/components/home/PromoSlider";
-import { SectionBrandList } from "@/components/home/SectionBrandList";
-import { SectionProductList } from "@/components/home/SectionProductList";
-import { SectionProductItem } from "@/types/common";
-import { CategoryList } from "@/components/home/CategoryList";
-import { SectionVideoList } from "@/components/home/SectionVideoList";
-import AboutNamPerfume from "@/components/home/AboutNamPerfume";
+import {
+  PromoSlider,
+  SectionBrandList,
+  SectionDataList,
+  CategoryList,
+  AboutNamPerfume,
+} from "@/components/home";
+
+import {
+  Product,
+  ProductSkeleton,
+  MediaCard,
+  VideoCardSkeleton,
+} from "@/components/common";
+
+import { SectionProductItem, SectionVideoItem } from "@/types/section";
+
 
 const brands = [
   { id: 1, name: "Gucci", image: "/brands/logo-brand-gucci.png" },
@@ -139,28 +149,28 @@ const NAMPERFUME_TV = [
     id: 1,
     thumbnail: "https://i.ytimg.com/vi/3aDs24YQTKo/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=3aDs24YQTKo",
-    title: "Những lần hiếm hoi mà diễn viên không phải diễn 🫣 #cuahangvuive #nuochoa #xuhuong #fyp #namperfume",
+    name: "Những lần hiếm hoi mà diễn viên không phải diễn 🫣 #cuahangvuive #nuochoa #xuhuong #fyp #namperfume",
     views: 1000
   },
   {
     id: 2,
     thumbnail: "https://i.ytimg.com/vi/xh0pQQqbfHI/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=xh0pQQqbfHI",
-    title: `💘Tại sao nước hoa lại có thế "gây thương nhớ"`,
+    name: `💘Tại sao nước hoa lại có thế "gây thương nhớ"`,
     views: 2000
   },
   {
     id: 3,
     thumbnail: "https://i.ytimg.com/vi/3ttq78vGP9o/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=3ttq78vGP9o",
-    title: "Mình vô thẳng vấn đề luôn đc hong ạ? 😌 #khomathom #fypシ゚ #nuochoa #namperfume #shorts #videoshort",
+    name: "Mình vô thẳng vấn đề luôn đc hong ạ? 😌 #khomathom #fypシ゚ #nuochoa #namperfume #shorts #videoshort",
     views: 3234
   },
   {
     id: 4,
     thumbnail: "https://i.ytimg.com/vi/CwiM9b5BuZQ/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=CwiM9b5BuZQ",
-    title: "2 đứa nó chưa từng hỏi Cô Ba Oanh có muốn hay ko😒#khomathom #nuochoa #namperfume #shorts #videoshort",
+    name: "2 đứa nó chưa từng hỏi Cô Ba Oanh có muốn hay ko😒#khomathom #nuochoa #namperfume #shorts #videoshort",
     views: 3393
   }
 ]
@@ -170,25 +180,25 @@ const NMAGAZINE = [
     id: 1,
     thumbnail: "https://file.hstatic.net/1000340570/article/banner-thuong-hieu-lattafa_37643b6cd970492ab353b44e15a6ad7e.jpeg",
     link: "/",
-    title: "LATTAFA",
+    name: "LATTAFA",
   },
   {
     id: 2,
     thumbnail: "https://file.hstatic.net/1000340570/article/kajal_c7b2b434926442468c73a8039d41e8cd.jpg",
     link: "/",
-    title: `KAJAH`,
+    name: `KAJAH`,
   },
   {
     id: 3,
     thumbnail: "https://file.hstatic.net/1000340570/article/z5579431254972_ef70cc6ef78fa5754d14e9bea82b11a9_86d749ee72ae4f1dae664531022e9111.jpg",
     link: "/",
-    title: "GRITTI",
+    name: "GRITTI",
   },
   {
     id: 4,
     thumbnail: "https://file.hstatic.net/1000340570/article/zaroff-banner-thuong-hieu_9824109c0f914447a2f064817078e88f.jpg",
     link: "/",
-    title: "ZAROFF",
+    name: "ZAROFF",
   },
 ]
 
@@ -241,15 +251,15 @@ export default function Home() {
       </div>
       <div className="container mx-auto px-4 lg:px-0 flex flex-col gap-6 my-8">
         <SectionBrandList title="Thương hiệu" items={brands} viewMoreLink="/brands" />
-        <SectionProductList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" />
-        <SectionProductList title="New Arrivals" items={dummyDatas.newArrival} viewMoreLink="/products" />
-        <SectionProductList title="Best Sellers" items={dummyDatas.bestSeller} viewMoreLink="/products" />
+        <SectionDataList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
+        <SectionDataList title="New Arrivals" items={dummyDatas.newArrival} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
+        <SectionDataList title="Best Sellers" items={dummyDatas.bestSeller} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
         <CategoryList items={BANNER_CATEGORY} />
-        <SectionProductList title="Mini Travel Size" items={dummyDatas.miniTravelSize} viewMoreLink="/products" />
-        <SectionProductList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" />
-        <SectionProductList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" />
-        <SectionVideoList title="namperfume TV" items={NAMPERFUME_TV} viewMoreLink="/videos" />
-        <SectionVideoList title="Nmagazine" items={NMAGAZINE} viewMoreLink="/videos" />
+        <SectionDataList title="Mini Travel Size" items={dummyDatas.miniTravelSize} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
+        <SectionDataList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
+        <SectionDataList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
+        <SectionDataList title="namperfume TV" items={NAMPERFUME_TV} viewMoreLink="/videos" SkeletonComponentUI={VideoCardSkeleton} ItemComponentUI={MediaCard as React.ComponentType<{ item: SectionVideoItem }>} />
+        <SectionDataList title="Nmagazine" items={NMAGAZINE} viewMoreLink="/videos" SkeletonComponentUI={VideoCardSkeleton} ItemComponentUI={MediaCard as React.ComponentType<{ item: SectionVideoItem }>} />
       </div>
       <AboutNamPerfume />
     </div>

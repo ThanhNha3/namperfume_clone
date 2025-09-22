@@ -1,10 +1,10 @@
-import { SectionProductItem } from "@/types/common";
+import { SectionProductItem } from "@/types/section";
 import { Heart } from "lucide-react";
 
-export const Product = ({ product }: { product: SectionProductItem }) => {
+export const Product = ({ item }: { item: SectionProductItem }) => {
     return (
         <div
-            key={`${product.id}_${product.name}}`}
+            key={`${item.id}_${item.name}`}
             className="min-w-[160px] max-w-[200px] flex-shrink-0 relative px-2"
         >
             {/* Icon Heart */}
@@ -14,7 +14,7 @@ export const Product = ({ product }: { product: SectionProductItem }) => {
 
             {/* Badge */}
             <div className="absolute top-2 left-2 flex flex-col gap-1">
-                {product.badges?.map((badge, i) => (
+                {item.badges?.map((badge, i) => (
                     <span
                         key={i}
                         className="bg-[var(--color-badge)] text-white text-[10px] px-1 py-0.5 rounded"
@@ -26,16 +26,16 @@ export const Product = ({ product }: { product: SectionProductItem }) => {
 
             {/* Product image */}
             <div className="w-full h-48 flex items-center justify-center">
-                <img src={product.image} alt={product.name} className="max-h-full object-contain" />
+                <img src={item.image} alt={item.name} className="max-h-full object-contain" />
             </div>
 
             {/* Info */}
             <div className="mt-2 text-center">
-                <h4 className="font-bold text-xs uppercase truncate">{product.subtitle}</h4>
-                <p className="text-xs text-gray-700 line-clamp-2">{product.name}</p>
-                <p className="text-red-600 font-semibold text-xs pt-2">{product.price}</p>
+                <h4 className="font-bold text-xs uppercase truncate">{item.subtitle}</h4>
+                <p className="text-xs text-gray-700 line-clamp-2">{item.name}</p>
+                <p className="text-red-600 font-semibold text-xs pt-2">{item.price}</p>
                 <p className="text-xs text-gray-500 pt-2">
-                    {`${product.sizes?.length} size${product.sizes?.length !== 1 ? "s" : ""}`}
+                    {`${item.sizes?.length} size${item.sizes?.length !== 1 ? "s" : ""}`}
                 </p>
             </div>
         </div>

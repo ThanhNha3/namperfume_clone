@@ -1,15 +1,19 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import "@/styles/components/_sectionList.scss";
-import { SectionListProductProps } from "@/types/section";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Product } from "../common/Product";
-import { SectionProductItem } from "@/types/common";
-import { ProductSkeleton } from "../common/ProductSkeleton";
 
-export function SectionProductList({ title, items, viewMoreLink }: SectionListProductProps) {
-  const [visibleItems, setVisibleItems] = useState<SectionProductItem[]>([]);
+import "@/styles/components/_sectionList.scss";
+import { SectionListDataProps, SectionProductItem, SectionVideoItem } from "@/types/section";
+
+export function SectionDataList<T extends SectionProductItem | SectionVideoItem>({
+  title,
+  items,
+  viewMoreLink,
+  SkeletonComponentUI,
+  ItemComponentUI,
+}: SectionListDataProps<T>) {
+  const [visibleItems, setVisibleItems] = useState<T[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   // drag state
@@ -26,7 +30,7 @@ export function SectionProductList({ title, items, viewMoreLink }: SectionListPr
   // Khởi tạo visible items (clone để loop vô hạn)
   useEffect(() => {
     if (items.length > 0) {
-      setVisibleItems([...items, ...items, ...items]); // clone 3 lần cho infinite loop
+      setVisibleItems([...items, ...items, ...items] as T[]); // clone 3 lần cho infinite loop
     }
   }, [items]);
 
@@ -160,9 +164,9 @@ export function SectionProductList({ title, items, viewMoreLink }: SectionListPr
           onTouchMove={(e) => onDrag(e.touches[0].pageX)}
         >
           {items.length === 0
-            ? Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
+            ? Array.from({ length: 6 }).map((_, i) => <SkeletonComponentUI key={i} />)
             : visibleItems.map((item, index) => (
-              <Product key={`${item.id}-${index}`} product={item} />
+              <ItemComponentUI key={`${item.id}-${index}`} item={item} />
             ))}
         </div>
 
