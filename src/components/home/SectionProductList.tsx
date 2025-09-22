@@ -1,169 +1,173 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import "@/styles/components/_sectionList.scss";
+import { SectionListProductProps } from "@/types/section";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Product } from "../common/Product";
+import { SectionProductItem } from "@/types/common";
 import { ProductSkeleton } from "../common/ProductSkeleton";
-import { SectionListProductProps } from "@/types/section";
 
-export function SectionProductList({
-  title,
-  items,
-  viewMoreLink,
-}: SectionListProductProps) {
-  const itemWidth = 200;
-  const doubledItems = [...items, ...items]; // gấp đôi list
-  const [currentIndex, setCurrentIndex] = useState(items.length); // bắt đầu ở "nửa sau"
-  const trackRef = useRef<HTMLDivElement>(null);
+export function SectionProductList({ title, items, viewMoreLink }: SectionListProductProps) {
+  const [visibleItems, setVisibleItems] = useState<SectionProductItem[]>([]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   // drag state
-  const pos = useRef({
-    startX: 0,
-    prevX: 0,
-    translate: -(items.length * itemWidth), // khởi tạo ở giữa
-    velocity: 0,
-    animFrame: 0,
-    dragging: false,
-  });
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
-  // ===== Drag logic =====
-  const handleStart = (clientX: number) => {
-    cancelAnimationFrame(pos.current.animFrame);
-    pos.current.dragging = true;
-    pos.current.startX = clientX;
-    pos.current.prevX = clientX;
-  };
+  // velocity state
+  const lastX = useRef(0);
+  const lastTime = useRef(0);
+  const velocity = useRef(0);
+  const momentumId = useRef<number | null>(null);
 
-  const handleMove = (clientX: number) => {
-    if (!pos.current.dragging) return;
-    const dx = clientX - pos.current.prevX;
-    pos.current.prevX = clientX;
-    pos.current.velocity = dx;
-    pos.current.translate += dx;
+  // Khởi tạo visible items (clone để loop vô hạn)
+  useEffect(() => {
+    if (items.length > 0) {
+      setVisibleItems([...items, ...items, ...items]); // clone 3 lần cho infinite loop
+    }
+  }, [items]);
 
-    if (trackRef.current) {
-      trackRef.current.style.transition = "none";
-      trackRef.current.style.transform = `translateX(${pos.current.translate}px)`;
+  // Infinite scroll loop
+  const handleScroll = () => {
+    if (!containerRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+
+    if (scrollLeft + clientWidth >= scrollWidth - 10) {
+      containerRef.current.scrollLeft = scrollWidth / 3;
+    }
+    if (scrollLeft <= 0) {
+      containerRef.current.scrollLeft = scrollWidth / 3;
     }
   };
 
-  const handleEnd = () => {
-    if (!pos.current.dragging) return;
-    pos.current.dragging = false;
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    const animate = () => {
-      pos.current.velocity *= 0.95;
-      pos.current.translate += pos.current.velocity;
+  // click scroll
+  const scrollByOne = (direction: "left" | "right") => {
+    if (!containerRef.current) return;
+    const itemWidth = containerRef.current.querySelector("div")?.clientWidth || 200;
+    containerRef.current.scrollBy({
+      left: direction === "right" ? itemWidth : -itemWidth,
+      behavior: "smooth",
+    });
+  };
 
-      if (trackRef.current) {
-        trackRef.current.style.transition = "none";
-        trackRef.current.style.transform = `translateX(${pos.current.translate}px)`;
-      }
+  // drag logic
+  const startDrag = (posX: number) => {
+    if (!containerRef.current) return;
+    if (momentumId.current) cancelAnimationFrame(momentumId.current);
+    isDragging.current = true;
+    startX.current = posX - containerRef.current.offsetLeft;
+    scrollLeft.current = containerRef.current.scrollLeft;
 
-      if (Math.abs(pos.current.velocity) > 0.5) {
-        pos.current.animFrame = requestAnimationFrame(animate);
+    lastX.current = posX;
+    lastTime.current = Date.now();
+    velocity.current = 0;
+  };
+
+  const stopDrag = () => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+
+    // apply momentum
+    const momentumScroll = () => {
+      if (!containerRef.current) return;
+      containerRef.current.scrollLeft -= velocity.current;
+
+      velocity.current *= 0.97; // thay vì 0.95
+      if (Math.abs(velocity.current) > 0.5) {
+        momentumId.current = requestAnimationFrame(momentumScroll);
       } else {
-        const nearestIndex = Math.round(-pos.current.translate / itemWidth);
-        setCurrentIndex(nearestIndex);
+        snapToNearest();
       }
     };
 
-    pos.current.animFrame = requestAnimationFrame(animate);
+    momentumId.current = requestAnimationFrame(momentumScroll);
   };
 
-  // ===== Snap + reset =====
-  useEffect(() => {
-    if (!trackRef.current || doubledItems.length === 0) return;
+  const onDrag = (posX: number) => {
+    if (!isDragging.current || !containerRef.current) return;
+    const x = posX - containerRef.current.offsetLeft;
+    const walk = (x - startX.current);
+    containerRef.current.scrollLeft = scrollLeft.current - walk;
 
-    const total = doubledItems.length;
+    // tính velocity
+    const now = Date.now();
+    const dx = posX - lastX.current;
+    const dt = now - lastTime.current;
+    velocity.current = (dx / (dt || 1)) * 10; // scale lên
 
-    // reset sớm khi gần đầu
-    if (currentIndex <= 1) {
-      const newIndex = currentIndex + items.length;
-      pos.current.translate = -newIndex * itemWidth;
+    lastX.current = posX;
+    lastTime.current = now;
+  };
 
-      // reset ngay lập tức (không transition)
-      trackRef.current.style.transition = "none";
-      trackRef.current.style.transform = `translateX(${pos.current.translate}px)`;
+  // snap về item gần nhất
+  const snapToNearest = () => {
+    if (!containerRef.current) return;
+    const el = containerRef.current;
+    const item = el.querySelector("div") as HTMLElement;
+    if (!item) return;
+    const itemWidth = item.clientWidth + 16; // gap-4 = 16px
+    const index = Math.round(el.scrollLeft / itemWidth);
+    const target = index * itemWidth;
 
-      // bắt buộc sync lại index nhưng delay 1 frame → tránh khựng
-      requestAnimationFrame(() => {
-        setCurrentIndex(newIndex);
-      });
-      return;
-    }
-
-    // reset sớm khi gần cuối
-    if (currentIndex >= total - 2) {
-      const newIndex = currentIndex - items.length;
-      pos.current.translate = -newIndex * itemWidth;
-
-      trackRef.current.style.transition = "none";
-      trackRef.current.style.transform = `translateX(${pos.current.translate}px)`;
-
-      requestAnimationFrame(() => {
-        setCurrentIndex(newIndex);
-      });
-      return;
-    }
-
-    // bình thường → animate
-    pos.current.translate = -currentIndex * itemWidth;
-    trackRef.current.style.transition = "transform 0.4s ease";
-    trackRef.current.style.transform = `translateX(${pos.current.translate}px)`;
-  }, [currentIndex, items.length, doubledItems.length]);
+    el.scrollTo({
+      left: target,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section>
+      {/* Header */}
       <div className="section-header flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">{title}</h2>
+        <h2 className="section-header__text text-xl font-semibold">{title}</h2>
         {viewMoreLink && (
           <a
             href={viewMoreLink}
-            className="text-sm text-gray-500 hover:underline flex items-center"
+            className="text-sm text-gray-500 hover:underline flex items-center section-header__view-more"
           >
-            Xem thêm <ChevronRight className="ml-1" />
+            Xem thêm <span className="ml-1"><ChevronRight /></span>
           </a>
         )}
       </div>
 
-      <div className="relative overflow-hidden">
+      {/* Wrapper để nút dính sát slider */}
+      <div className="relative">
         {/* Nút trái */}
-        <button
-          className="indicator-btn left-0 -translate-x-1/2 hidden xl:flex"
-          onClick={() => setCurrentIndex((i) => i - 1)}
-        >
+        <button className="indicator-btn left-0 translate-x-[-80%] hidden md:block" onClick={() => scrollByOne("left")}>
           <ChevronLeft />
         </button>
 
-        {/* Track */}
+        {/* Scroll container */}
         <div
-          ref={trackRef}
-          className="flex select-none"
-          onMouseDown={(e) => handleStart(e.clientX)}
-          onMouseMove={(e) => handleMove(e.clientX)}
-          onMouseUp={handleEnd}
-          onMouseLeave={handleEnd}
-          onTouchStart={(e) => handleStart(e.touches[0].clientX)}
-          onTouchMove={(e) => handleMove(e.touches[0].clientX)}
-          onTouchEnd={handleEnd}
+          ref={containerRef}
+          className="flex gap-4 overflow-x-auto scrollbar-hide cursor-grab"
+          onMouseDown={(e) => startDrag(e.pageX)}
+          onMouseUp={stopDrag}
+          onMouseLeave={stopDrag}
+          onMouseMove={(e) => onDrag(e.pageX)}
+          onTouchStart={(e) => startDrag(e.touches[0].pageX)}
+          onTouchEnd={stopDrag}
+          onTouchMove={(e) => onDrag(e.touches[0].pageX)}
         >
-          {doubledItems.length === 0
-            ? Array.from({ length: 6 }).map((_, i) => (
-              <ProductSkeleton key={i} />
-            ))
-            : doubledItems.map((item, index) => (
-              <div key={`${item.id}-${index}`} style={{ minWidth: itemWidth }}>
-                <Product product={item} />
-              </div>
+          {items.length === 0
+            ? Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
+            : visibleItems.map((item, index) => (
+              <Product key={`${item.id}-${index}`} product={item} />
             ))}
         </div>
 
         {/* Nút phải */}
-        <button
-          className="indicator-btn right-0 translate-x-1/2 hidden xl:flex"
-          onClick={() => setCurrentIndex((i) => i + 1)}
-        >
+        <button className="indicator-btn right-0 translate-x-[80%] hidden md:block" onClick={() => scrollByOne("right")}>
           <ChevronRight />
         </button>
       </div>
