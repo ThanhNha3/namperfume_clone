@@ -59,17 +59,14 @@ const contents: Record<TabKey, JSX.Element> = {
     freeship: (
         <section className="about__section">
             <h2 className="about__section__title">Ship nhanh miễn phí</h2>
-
             <h3 className="about__section__subtitle">TP. Hồ Chí Minh</h3>
             <p className="about__section__highlight">
                 Đơn hàng sẽ được đóng gói cẩn thận và giao trong 2h nội thành (9h-21h).
             </p>
-
             <h3 className="about__section__subtitle">Toàn quốc</h3>
             <p className="about__section__highlight">
                 Đơn hàng được đóng gói cẩn thận bằng nhiều lớp chống sốc kèm hộp đựng Namperfume dán tem niêm phong, đảm bảo an toàn sản phẩm trong quá trình vận chuyển từ 2-4 ngày.
             </p>
-
             <div className="about__section__link">
                 <Link href="/" className="text-xs flex items-center">
                     <span>Liên hệ ngay</span>
@@ -114,7 +111,6 @@ const contents: Record<TabKey, JSX.Element> = {
             <h2 className="about__section__title">Bạn biết là bạn có thể tin chúng tôi</h2>
             <p className="about__section__highlight">
                 Cam Kết sản phẩm bán ra từ namperfume là hàng chính hãng 100%
-
             </p>
             <div className="about__section__link">
                 <Link href="/" className="text-xs flex items-center">
@@ -124,7 +120,6 @@ const contents: Record<TabKey, JSX.Element> = {
             </div>
         </section>
     ),
-
 
     promotion: (
         <section className="about__section">
@@ -160,9 +155,20 @@ const contents: Record<TabKey, JSX.Element> = {
     ),
 };
 
-
 export default function AboutNamPerfume() {
     const [activeTab, setActiveTab] = useState<TabKey>("store");
+    const [displayTab, setDisplayTab] = useState<TabKey>("store");
+    const [fade, setFade] = useState(true);
+
+    const handleTabClick = (key: TabKey) => {
+        if (key === activeTab) return;
+        setFade(false);
+        setTimeout(() => {
+            setActiveTab(key);
+            setDisplayTab(key);
+            setFade(true);
+        }, 200); // trùng với CSS transition
+    };
 
     return (
         <section className="about">
@@ -172,7 +178,7 @@ export default function AboutNamPerfume() {
                 {tabs.map((tab) => (
                     <button
                         key={tab.key}
-                        onClick={() => setActiveTab(tab.key)}
+                        onClick={() => handleTabClick(tab.key)}
                         className={`about__tab ${activeTab === tab.key ? "about__tab--active" : ""}`}
                     >
                         <div className="about__tab__icon">{tab.icon}</div>
@@ -180,7 +186,10 @@ export default function AboutNamPerfume() {
                     </button>
                 ))}
             </div>
-            <div className="about__content">{contents[activeTab]}</div>
+
+            <div className={`about__content ${fade ? "" : "fade-out"}`}>
+                {contents[displayTab]}
+            </div>
         </section>
     );
 }

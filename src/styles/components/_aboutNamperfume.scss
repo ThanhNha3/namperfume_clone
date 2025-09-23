@@ -46,7 +46,6 @@ $font-style: "Noto Serif Display", serif;
       color: #000;
 
       .about__tab__icon {
-        // border-color: #000;
         background: var(--color-primary);
 
         svg {
@@ -61,6 +60,15 @@ $font-style: "Noto Serif Display", serif;
     padding: 2rem 0;
     background: #fff;
     text-align: center; // để text tự nhiên hơn, SEO thân thiện hơn
+
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    opacity: 1;
+    transform: translateY(0);
+    
+    &.fade-out {
+        opacity: 0;
+        transform: translateY(10px);
+    }
   }
 
   &__section {
