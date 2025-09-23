@@ -48,6 +48,7 @@
         align-items: center;
         gap: 0.25rem;
         color: var(--color-text);
+        font-size: 12px;
 
         svg {
           color: var(--color-text-muted);
@@ -73,6 +74,7 @@
 
         a {
           text-decoration: none;
+          font-size: 12px;
           color: var(--color-text);
         }
 
@@ -114,7 +116,8 @@
               li {
                 white-space: nowrap;
                 cursor: pointer;
-
+                font-size: 12px;
+                
                 &:hover {
                   color: var(--color-primary);
                 }
@@ -131,12 +134,13 @@
             font-weight: bold;
             margin-bottom: 1rem;
             color: var(--color-text);
+            font-size: 12px;
           }
 
           &__view-all {
             color: var(--color-text-muted);
             text-decoration: none;
-
+            font-size: 12px;
             &:hover {
               color: var(--color-primary);
             }

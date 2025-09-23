@@ -2,19 +2,19 @@ import { Mail, Phone, Facebook, Instagram, Youtube, Music } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--color-footer-bg)] text-[var(--color-footer-text)] px-6 py-10 md:px-12 lg:px-20">
+    <footer className="text-xs bg-[var(--color-footer-bg)] text-[var(--color-footer-text)] px-6 py-10 md:px-12 lg:px-20">
       <div className="container mx-auto">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Cột 1 */}
           <div>
             <h3 className="font-semibold mb-4">namperfume</h3>
-            <ul className="space-y-2 text-sm text-[var(--color-footer-muted)]">
+            <ul className="space-y-2 text-xs">
               <li>Giới thiệu</li>
               <li>Liên hệ</li>
               <li>Tuyển dụng</li>
             </ul>
             <h3 className="font-semibold mt-6 mb-2">Ngôn ngữ</h3>
-            <ul className="space-y-2 text-sm text-[var(--color-footer-muted)]">
+            <ul className="space-y-2 text-xs">
               <li>🇺🇸 Tiếng Anh</li>
               <li>🇻🇳 Tiếng Việt</li>
             </ul>
@@ -23,7 +23,7 @@ export default function Footer() {
           {/* Cột 2 */}
           <div>
             <h3 className="font-semibold mb-4">Hỗ trợ</h3>
-            <ul className="space-y-2 text-sm text-[var(--color-footer-muted)]">
+            <ul className="space-y-2 text-xs">
               <li>Các câu hỏi thường gặp</li>
               <li>Cách thức mua hàng</li>
               <li>Hướng dẫn đặt hàng</li>
@@ -39,7 +39,7 @@ export default function Footer() {
           {/* Cột 3 */}
           <div>
             <h3 className="font-semibold mb-4">Địa chỉ cửa hàng</h3>
-            <ul className="space-y-2 text-sm text-[var(--color-footer-muted)]">
+            <ul className="space-y-2 text-xs">
               <li>420/6 Lê Văn Sỹ, P14, Q3, TP.HCM</li>
               <li>1379-1381 Đường 3/2, P16, Q11, TP.HCM</li>
               <li>45-47 CMT8, P Bến Thành, Q1, TP.HCM</li>
@@ -66,14 +66,14 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Nhập email của bạn"
-                className="flex-1 px-3 py-2 text-sm rounded-l bg-white text-black focus:outline-none"
+                className="flex-1 px-3 py-2 text-xs rounded-l bg-white text-black focus:outline-none"
               />
-              <button className="px-4 py-2 bg-[var(--color-footer-accent)] text-white text-sm rounded-r">
+              <button className="px-4 py-2 bg-[var(--color-footer-accent)] text-white text-xs rounded-r">
                 GỬI
               </button>
             </div>
 
-            <p className="text-sm text-[var(--color-footer-muted)]">
+            <p className="text-xs">
               GỌI ĐẶT MUA: <Phone size={14} className="inline mx-1" /> 1900 0129
               (9:00 - 21:00)
             </p>
@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
 
         {/* Dòng dưới cùng */}
-        <div className="mt-10 border-t border-[var(--color-footer-border)] pt-6 text-xs text-[var(--color-footer-muted)]">
+        <div className="mt-10 border-t border-[var(--color-footer-border)] pt-6 text-xs">
           <p>
             Copyright 2013-2025 © Sonny Nguyen. All Rights Reserved.
           </p>

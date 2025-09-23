@@ -66,12 +66,12 @@ export default function HeaderDesktop() {
     return (
         <div className="header">
             <div className="header__topbar">
-                <span>Thương hiệu nước hoa được feedback nhiều nhất Việt Nam</span>
+                <span className="text-xs">Thương hiệu nước hoa được feedback nhiều nhất Việt Nam</span>
             </div>
             <div className="header__middlebar border-b">
                 <div className="container mx-auto flex justify-between">
-                    <span>Freeship mọi đơn hàng</span>
-                    <span>Theo dõi đơn hàng</span>
+                    <span className="text-xs">Freeship mọi đơn hàng</span>
+                    <span className="text-xs">Theo dõi đơn hàng</span>
                 </div>
             </div>
             <div className="header__bottombar">

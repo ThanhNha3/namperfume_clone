@@ -176,7 +176,7 @@ export default function AboutNamPerfume() {
                         className={`about__tab ${activeTab === tab.key ? "about__tab--active" : ""}`}
                     >
                         <div className="about__tab__icon">{tab.icon}</div>
-                        <span className="about__tab__label">{tab.label}</span>
+                        <span className="about__tab__label text-xs">{tab.label}</span>
                     </button>
                 ))}
             </div>
