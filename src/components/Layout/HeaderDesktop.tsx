@@ -66,12 +66,12 @@ export default function HeaderDesktop() {
     return (
         <div className="header">
             <div className="header__topbar">
-                <span className="text-xs">Thương hiệu nước hoa được feedback nhiều nhất Việt Nam</span>
+                <span>Thương hiệu nước hoa được feedback nhiều nhất Việt Nam</span>
             </div>
             <div className="header__middlebar border-b">
                 <div className="container mx-auto flex justify-between">
-                    <span className="text-xs">Freeship mọi đơn hàng</span>
-                    <span className="text-xs">Theo dõi đơn hàng</span>
+                    <span>Freeship mọi đơn hàng</span>
+                    <span>Theo dõi đơn hàng</span>
                 </div>
             </div>
             <div className="header__bottombar">
@@ -149,7 +149,7 @@ export default function HeaderDesktop() {
                                                             <li key={item.key}>{item.label}</li>
                                                         ))}
                                                     </ul>
-                                                    {category.mega.categories.length > 7 && (
+                                                    {category.mega.categories.length > 12 && (
                                                         <Link href="/categories" className="mega-menu__view-all">
                                                             Xem tất cả
                                                         </Link>
@@ -166,7 +166,7 @@ export default function HeaderDesktop() {
                                                             <li key={brand}>{brand}</li>
                                                         ))}
                                                     </ul>
-                                                    {category.mega.brands.length > 7 && (
+                                                    {category.mega.brands.length > 12 && (
                                                         <Link href="/brands" className="mega-menu__view-all">
                                                             Xem tất cả
                                                         </Link>
@@ -177,7 +177,7 @@ export default function HeaderDesktop() {
                                             {/* Banner */}
                                             <div className="mega-menu__images">
                                                 {category?.mega?.banners?.map((img, i) => (
-                                                    <Image key={i} src={img} alt="brand" width={250} height={120} />
+                                                    <Image key={i} src={img} alt="brand" width={200} height={170} />
                                                 ))}
                                             </div>
                                         </div>
