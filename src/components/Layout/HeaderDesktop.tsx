@@ -19,7 +19,8 @@ const categories: HeaderCategory[] = [
     {
         key: "deal_thom",
         title: "Deal Thơm",
-        link: "/collections/deal-thom"
+        link: "/collections/deal-thom",
+        type: "bold"
     },
     {
         key: "nuoc_hoa_nam", title: "Nước Hoa Nam", link: "/collections/nuoc-hoa-nam", mega: {
@@ -138,6 +139,7 @@ export default function HeaderDesktop() {
                                 onMouseLeave={() => setCategoryHover(null)}
                                 className={`
                                     ${category.type === "highlight" ? "highlight" : ""} 
+                                    ${category.type === "bold" ? "bold" : ""}
                                     ${category.key === activeMenu ? "active" : ""}
                                 `}
                             >

@@ -1,7 +1,7 @@
 export type HeaderCategory = {
     key: string;
     title: string;
-    type?: "highlight";
+    type?: "highlight" | "bold";
     link: string;
     mega?: {
         categories: {

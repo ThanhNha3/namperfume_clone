@@ -65,6 +65,7 @@
       justify-content: center;
       position: relative;
 
+
       li {
         &.highlight a {
           color: var(--color-primary);
@@ -74,6 +75,10 @@
         &.active a {
           color: var(--color-primary);
           text-decoration: underline;
+        }
+
+        &.bold a {
+          font-weight: bold;
         }
 
         a {
@@ -96,6 +101,7 @@
           padding: 20px;
           display: flex;
           z-index: 100;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
           &__content {
             display: flex;
@@ -144,10 +150,11 @@
           }
 
           &__view-all {
-            color: var(--color-text-muted);
-            text-decoration: none;
+            color: var(--color-text-muted) !important;
+            text-decoration: none !important;
+
             &:hover {
-              color: var(--color-primary);
+              color: var(--color-primary) !important;
             }
           }
 
