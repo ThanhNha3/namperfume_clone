@@ -64,6 +64,7 @@ const categories: HeaderCategory[] = [
 
 export default function HeaderDesktop() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
+    const [categoryHover, setCategoryHover] = useState<string | null>(null);
 
     return (
         <div className="header">
@@ -133,14 +134,18 @@ export default function HeaderDesktop() {
                             <li
                                 key={category.title}
                                 onClick={() => setActiveMenu(category.key)}
+                                onMouseEnter={() => setCategoryHover(category.key)}
+                                onMouseLeave={() => setCategoryHover(null)}
                                 className={`
                                     ${category.type === "highlight" ? "highlight" : ""} 
-                                    ${category.key === activeMenu ? "active" : ""}`}
+                                    ${category.key === activeMenu ? "active" : ""}
+                                    ${category.key === categoryHover ? "hover" : ""}
+                                `}
                             >
                                 <Link href={category.link}>{category.title}</Link>
 
                                 {/* Mega menu */}
-                                {category.mega && category.key === activeMenu && (
+                                {category.mega && category.key === categoryHover && (
                                     <div className="mega-menu">
                                         <div className="mega-menu__content">
                                             {/* Phân loại */}
