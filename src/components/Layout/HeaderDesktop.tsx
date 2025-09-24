@@ -139,7 +139,6 @@ export default function HeaderDesktop() {
                                 className={`
                                     ${category.type === "highlight" ? "highlight" : ""} 
                                     ${category.key === activeMenu ? "active" : ""}
-                                    ${category.key === categoryHover ? "hover" : ""}
                                 `}
                             >
                                 <Link href={category.link}>{category.title}</Link>
@@ -185,7 +184,7 @@ export default function HeaderDesktop() {
                                             {/* Banner */}
                                             <div className="mega-menu__images">
                                                 {category?.mega?.banners?.map((img, i) => (
-                                                    <Image key={i} src={img} alt="brand" width={200} height={170} />
+                                                    <Image key={i} src={img} alt="brand" width={230} height={200} />
                                                 ))}
                                             </div>
                                         </div>
