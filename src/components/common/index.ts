@@ -1,4 +1,5 @@
-export { ProductCard } from "./ProductCard";
-export { ProductSkeleton } from "./ProductSkeleton";
-export { MediaCard } from "./MediaCard";
-export { VideoCardSkeleton } from "./VideoCardSkeleton";
+export { ProductCard } from "../product/ProductCard";
+export { ProductSkeleton } from "../product/ProductSkeleton";
+export { MediaCard } from "../media/MediaCard";
+export { VideoCardSkeleton } from "../media/VideoCardSkeleton";
+export { FilterSidebar } from "../filter/FilterSidebar";
