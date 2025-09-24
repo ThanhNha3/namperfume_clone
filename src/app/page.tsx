@@ -13,7 +13,7 @@ import {
 } from "@/components/home";
 
 import {
-  Product,
+  ProductCard,
   ProductSkeleton,
   MediaCard,
   VideoCardSkeleton,
@@ -251,13 +251,13 @@ export default function Home() {
       </div>
       <div className="container mx-auto px-4 lg:px-0 flex flex-col gap-6 my-8">
         <SectionBrandList title="Thương hiệu" items={brands} viewMoreLink="/brands" />
-        <SectionDataList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
-        <SectionDataList title="New Arrivals" items={dummyDatas.newArrival} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
-        <SectionDataList title="Best Sellers" items={dummyDatas.bestSeller} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
+        <SectionDataList title="Deal thơm" items={dummyDatas.dealThom} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={ProductCard} />
+        <SectionDataList title="New Arrivals" items={dummyDatas.newArrival} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={ProductCard} />
+        <SectionDataList title="Best Sellers" items={dummyDatas.bestSeller} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={ProductCard} />
         <CategoryList items={BANNER_CATEGORY} />
-        <SectionDataList title="Mini Travel Size" items={dummyDatas.miniTravelSize} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
-        <SectionDataList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
-        <SectionDataList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={Product} />
+        <SectionDataList title="Mini Travel Size" items={dummyDatas.miniTravelSize} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={ProductCard} />
+        <SectionDataList title="Giftset" items={dummyDatas.giftset} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={ProductCard} />
+        <SectionDataList title="Bodycare & Homecare" items={dummyDatas.bodycareHomecare} viewMoreLink="/products" SkeletonComponentUI={ProductSkeleton} ItemComponentUI={ProductCard} />
         <SectionDataList title="namperfume TV" items={NAMPERFUME_TV} viewMoreLink="/videos" SkeletonComponentUI={VideoCardSkeleton} ItemComponentUI={MediaCard as React.ComponentType<{ item: SectionMediaItem }>} />
         <SectionDataList title="Nmagazine" items={NMAGAZINE} viewMoreLink="/videos" SkeletonComponentUI={VideoCardSkeleton} ItemComponentUI={MediaCard as React.ComponentType<{ item: SectionMediaItem }>} />
       </div>

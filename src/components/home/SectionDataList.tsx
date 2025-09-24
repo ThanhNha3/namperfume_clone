@@ -4,7 +4,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import "@/styles/components/_sectionList.scss";
-import { SectionListDataProps, SectionProductItem, SectionMediaItem } from "@/types/section";
+
+import { SectionListDataProps } from "@/types/section";
+import { SectionProductItem } from "@/types/product";
+import { SectionMediaItem } from "@/types/media";
 
 export function SectionDataList<T extends SectionProductItem | SectionMediaItem>({
   title,

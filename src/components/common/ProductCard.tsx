@@ -1,7 +1,7 @@
-import { SectionProductItem } from "@/types/section";
+import { SectionProductItem } from "@/types/product";
 import { Heart } from "lucide-react";
 
-export const Product = ({ item }: { item: SectionProductItem }) => {
+export const ProductCard = ({ item }: { item: SectionProductItem }) => {
     return (
         <div
             key={`${item.id}_${item.name}`}
