@@ -6,16 +6,16 @@ import { Bell, Search, ShoppingCart } from "lucide-react";
 import "@/styles/layout/_headerMobile.scss";
 
 const menuItems = [
-  { title: "Namperfume Favorites" },
-  { title: "Deal Thơm" },
-  { title: "Nước Hoa Nữ" },
-  { title: "Nước Hoa Nam" },
-  { title: "Nước Hoa Mini" },
-  { title: "Giftset" },
-  { title: "Nước Hoa Niche" },
-  { title: "Thương Hiệu" },
-  { title: "Bodycare & Homecare" },
-  { title: "Son Môi" },
+  { key: "favorites", title: "Namperfume Favorites", link: "/collections/favorites", type: "highlight" },
+  { key: "deal_thom", title: "Deal Thơm", link: "/collections/deal-thom" },
+  { key: "nuoc_hoa_nu", title: "Nước Hoa Nữ", link: "/collections/nuoc-hoa-nu" },
+  { key: "nuoc_hoa_nam", title: "Nước Hoa Nam", link: "/collections/nuoc-hoa-nam" },
+  { key: "nuoc_hoa_mini", title: "Nước Hoa Mini", link: "/collections/nuoc-hoa-mini" },
+  { key: "giftset", title: "Giftset", link: "/collections/giftset" },
+  { key: "nuoc_hoa_niche", title: "Nước Hoa Niche", link: "/collections/nuoc-hoa-niche" },
+  { key: "thuong_hieu", title: "Thương Hiệu", link: "/collections/thuong-hieu" },
+  { key: "bodycare_homecare", title: "Bodycare & Homecare", link: "/collections/bodycare-homecare" },
+  { key: "son_moi", title: "Son Môi", link: "/collections/son-moi" },
 ];
 
 const promoMessages = [
@@ -65,7 +65,7 @@ const HeaderMobile: React.FC = () => {
       <div className={"w-full overflow-x-auto"}>
         <div className="flex gap-4 px-4 py-2 whitespace-nowrap">
           {menuItems.map((item, index) => (
-            <Link key={item.title} href="#" className={`text-xs ${index === 0 ? 'font-bold text-[var(--color-primary)]' : 'text-[var(--color-text)]'}`}>
+            <Link key={item.key} href={item.link} className={`text-xs ${index === 0 ? 'font-bold text-[var(--color-primary)]' : 'text-[var(--color-text)]'}`}>
               {item.title}
             </Link>
           ))}

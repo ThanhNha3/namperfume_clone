@@ -13,14 +13,16 @@ const categories: HeaderCategory[] = [
     {
         key: "favorites",
         title: "namperfume Favorites",
-        type: "highlight"
+        type: "highlight",
+        link: "/collections/favorites"
     },
     {
         key: "deal_thom",
         title: "Deal Thơm",
+        link: "/collections/deal-thom"
     },
     {
-        key: "nuoc_hoa_nam", title: "Nước Hoa Nam", mega: {
+        key: "nuoc_hoa_nam", title: "Nước Hoa Nam", link: "/collections/nuoc-hoa-nam", mega: {
             categories: [
                 {
                     key: "new",
@@ -51,13 +53,13 @@ const categories: HeaderCategory[] = [
             banners: ["/menu/menu_hover_nam_1.jpg", "/menu/menu_hover_nam_2.jpg", "/menu/menu_hover_nam_3.jpg"],
         },
     },
-    { key: "nuoc_hoa_nu", title: "Nước Hoa Nữ" },
-    { key: "nuoc_hoa_mini", title: "Nước Hoa Mini" },
-    { key: "giftset", title: "Giftset" },
-    { key: "nuoc_hoa_niche", title: "Nước Hoa Niche" },
-    { key: "thuong_hieu", title: "Thương Hiệu" },
-    { key: "bodycare_homecare", title: "Bodycare & Homecare" },
-    { key: "son_moi", title: "Son Môi" },
+    { key: "nuoc_hoa_nu", title: "Nước Hoa Nữ", link: "/collections/nuoc-hoa-nu" },
+    { key: "nuoc_hoa_mini", title: "Nước Hoa Mini", link: "/collections/nuoc-hoa-mini" },
+    { key: "giftset", title: "Giftset", link: "/collections/giftset" },
+    { key: "nuoc_hoa_niche", title: "Nước Hoa Niche", link: "/collections/nuoc-hoa-niche" },
+    { key: "thuong_hieu", title: "Thương Hiệu", link: "/collections/thuong-hieu" },
+    { key: "bodycare_homecare", title: "Bodycare & Homecare", link: "/collections/bodycare-homecare" },
+    { key: "son_moi", title: "Son Môi", link: "/collections/son-moi" },
 ];
 
 export default function HeaderDesktop() {
@@ -134,7 +136,7 @@ export default function HeaderDesktop() {
                                 onMouseLeave={() => setActiveMenu(null)}
                                 className={category.type === "highlight" ? "highlight" : ""}
                             >
-                                <Link href="#">{category.title}</Link>
+                                <Link href={category.link}>{category.title}</Link>
 
                                 {/* Mega menu */}
                                 {category.mega && category.key === activeMenu && (
