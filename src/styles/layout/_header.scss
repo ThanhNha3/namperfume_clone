@@ -71,9 +71,18 @@
           font-weight: bold;
         }
 
+        &.active a {
+          color: var(--color-primary);
+          text-decoration: underline;
+        }
+
         a {
           text-decoration: none;
           color: var(--color-text);
+
+          &:hover {
+            color: var(--color-primary);
+          }
         }
 
         /* Mega menu */
@@ -115,7 +124,7 @@
               li {
                 white-space: nowrap;
                 cursor: pointer;
-                
+
                 &:hover {
                   color: var(--color-primary);
                 }

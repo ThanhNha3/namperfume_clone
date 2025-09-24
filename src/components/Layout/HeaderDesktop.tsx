@@ -132,9 +132,10 @@ export default function HeaderDesktop() {
                         {categories.map((category) => (
                             <li
                                 key={category.title}
-                                onMouseEnter={() => setActiveMenu(category.key)}
-                                onMouseLeave={() => setActiveMenu(null)}
-                                className={category.type === "highlight" ? "highlight" : ""}
+                                onClick={() => setActiveMenu(category.key)}
+                                className={`
+                                    ${category.type === "highlight" ? "highlight" : ""} 
+                                    ${category.key === activeMenu ? "active" : ""}`}
                             >
                                 <Link href={category.link}>{category.title}</Link>
 
