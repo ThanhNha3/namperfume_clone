@@ -32,7 +32,7 @@ export default function Accordion({ children }: AccordionProps) {
                     className="flex items-center justify-center"
                 >
                     <ChevronDown
-                        className={`h-6 w-6 text-gray-600 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                        className={`h-6 w-6 text-[var(--subtext-color)] transition-transform duration-200 ${isOpen ? "rotate-180" : ""
                             }`}
                     />
                 </button>
