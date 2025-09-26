@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Heart } from "lucide-react";
 import "@/styles/components/_productList.scss";
+import HandleCollectionLayout from "@/components/Layout/HandleCollectionLayout";
 
 type Product = {
   id: string;
@@ -59,67 +60,7 @@ export default function Collection({
 }: {
   params: { slug: string };
 }) {
-  const [page, setPage] = useState(1);
-  const perPage = 8;
-  const totalPages = Math.ceil(dummyProducts.length / perPage);
-  const visible = dummyProducts.slice((page - 1) * perPage, page * perPage);
-  console.log(params.slug);
   return (
-    <div className="product-list">
-      {/* Title */}
-      {/* <p className="product-list__title">{TITLE_MAP[params.slug]}</p> */}
-      
-      {/* Products grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-        {visible.map((p) => (
-          <div
-            key={p.id}
-            className="border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white p-4 relative"
-          >
-            <button className="absolute top-3 right-3 text-gray-500 hover:text-red-500">
-              <Heart size={18} />
-            </button>
-            <div className="aspect-square flex items-center justify-center">
-              <img
-                src={p.image}
-                alt={p.name}
-                className="max-h-full object-contain"
-              />
-            </div>
-            <div className="mt-3 space-y-1">
-              <p className="text-sm font-semibold uppercase">{p.brand}</p>
-              <p className="text-sm">{p.name}</p>
-              {p.salePrice ? (
-                <div className="space-x-2">
-                  <span className="text-red-600 font-bold">{p.salePrice}</span>
-                  <span className="line-through text-gray-400 text-sm">
-                    {p.price}
-                  </span>
-                </div>
-              ) : (
-                <span className="text-red-600 font-bold">{p.price}</span>
-              )}
-              <p className="text-xs text-gray-500">{p.sizes.length} Sizes</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Pagination */}
-      <div className="flex justify-center gap-2 mt-6">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => setPage(i + 1)}
-            className={`px-3 py-1 rounded ${page === i + 1
-              ? "bg-black text-white"
-              : "bg-gray-100 hover:bg-gray-200"
-              }`}
-          >
-            {i + 1}
-          </button>
-        ))}
-      </div>
-    </div>
+    <HandleCollectionLayout collection={dummyProducts} />
   );
 }
