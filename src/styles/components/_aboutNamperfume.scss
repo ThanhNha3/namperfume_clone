@@ -4,6 +4,7 @@ $font-style: "Noto Serif Display", serif;
 .about {
   background: $--color-bg;
   text-align: center;
+  color: var(--color-text);
 
   &__title {
     font-size: 2rem;

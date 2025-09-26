@@ -30,7 +30,7 @@ export const CategoryList: React.FC<CategoryListProps> = ({ items }) => {
 
                     {/* Text overlay */}
                     <Link href={"/"} className="w-full flex align-center absolute bottom-6 justify-center">
-                        <div className="flex align-center gap-2 text-xs sm:text-sm font-semibold">
+                        <div className="flex align-center gap-2 text-xs sm:text-sm font-semibold text-[var(--color-text)]">
                             <span>
                                 {item.name.toUpperCase()}
                             </span>

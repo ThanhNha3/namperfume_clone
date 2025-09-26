@@ -5,11 +5,11 @@ export const ProductCard = ({ item }: { item: SectionProductItem }) => {
     return (
         <div
             key={`${item.id}_${item.name}`}
-            className="group min-w-[160px] max-w-[200px] flex-shrink-0 relative px-2"
+            className="group min-w-[160px] max-w-[200px] h-[300px] flex-shrink-0 relative px-2"
         >
             {/* Icon Heart */}
-            <button className="absolute top-2 right-2 bg-white rounded-full p-1 shadow z-10">
-                <Heart size={16} className="text-gray-600" />
+            <button className="absolute top-2 right-2 z-10 cursor-pointer">
+                <Heart size={16} className="text-[var(--color-text)]" />
             </button>
 
             {/* Badge */}
@@ -39,15 +39,15 @@ export const ProductCard = ({ item }: { item: SectionProductItem }) => {
             </div>
 
             {/* Info */}
-            <div className="mt-2 text-center">
-                <h4 className="font-bold text-xs uppercase truncate">
-                    {item.subtitle}
-                </h4>
-                <p className="text-xs text-gray-700 line-clamp-2">{item.name}</p>
-                <p className="text-red-600 font-semibold text-xs pt-2">
+            <div className="mt-2 text-left">
+                {item?.brand && (<h4 className="font-bold text-xs text-[var(--color-text)] uppercase truncate">
+                    {item?.brand}
+                </h4>)}
+                <p className="text-xs text-[var(--color-text)] line-clamp-2 h-[32px]">{item.name}</p>
+                <p className="text-[var(--color-primary)] font-semibold text-xs pt-2">
                     {item.price}
                 </p>
-                <p className="text-xs text-gray-500 pt-2">
+                <p className="text-xs text-[var(--color-text)] pt-2">
                     {`${item.sizes?.length} size${item.sizes?.length !== 1 ? "s" : ""}`}
                 </p>
             </div>

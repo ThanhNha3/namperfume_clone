@@ -34,7 +34,7 @@ export const dummyProducts: Product[] = [
     price: "3,350,000₫",
     salePrice: "2,950,000₫",
     sizes: ["50ml", "100ml"],
-    image: "/images/products/burberry-hero.jpg",
+    image: "/products/p1.jpg",
   },
   {
     id: "2",
@@ -42,7 +42,7 @@ export const dummyProducts: Product[] = [
     brand: "DIOR",
     price: "3,200,000₫",
     sizes: ["60ml", "100ml"],
-    image: "/images/products/dior-sauvage.jpg",
+    image: "/products/p2.jpg",
   },
   {
     id: "3",
@@ -51,8 +51,33 @@ export const dummyProducts: Product[] = [
     price: "3,800,000₫",
     salePrice: "3,500,000₫",
     sizes: ["50ml", "100ml"],
-    image: "/images/products/bleu-chanel.jpg",
+    image: "/products/p3.jpg",
   },
+  {
+    id: "4",
+    name: "Yves Saint Laurent La Nuit de L'Homme",
+    brand: "YSL",
+    price: "2,900,000₫",
+    sizes: ["60ml", "100ml"],
+    image: "/products/p4.jpg",
+  },
+  {
+    id: "5",
+    name: "Giorgio Armani Acqua di Giò Profumo",
+    brand: "ARMANI",
+    price: "3,600,000₫",
+    salePrice: "3,200,000₫",
+    sizes: ["75ml", "125ml"],
+    image: "/products/p5.jpg",
+  },
+  {
+    id: "6",
+    name: "Tom Ford Noir Extreme",
+    brand: "TOM FORD",
+    price: "4,200,000₫",
+    sizes: ["50ml", "100ml"],
+    image: "/products/p6.jpg",
+  }
 ];
 
 export default function Collection({
