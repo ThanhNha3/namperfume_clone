@@ -30,8 +30,8 @@ const FilterSection = ({ title, options = [], showMore = false }: FilterSectionP
             {open && (
                 <div className="mt-2 space-y-2">
                     {visibleOptions.map((option, idx) => (
-                        <label key={idx} className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                            <input type="radio" name={title} className="w-4 h-4 border-gray-300" />
+                        <label key={idx} className="flex items-center gap-2 text-sm text-[var(--color-text)] cursor-pointer">
+                            <input type="radio" name={title} className="w-4 h-4 border-[var(--border-color)]" />
                             {option}
                         </label>
                     ))}
@@ -39,7 +39,7 @@ const FilterSection = ({ title, options = [], showMore = false }: FilterSectionP
                     {showMore && options.length > 5 && (
                         <button
                             onClick={() => setExpanded(!expanded)}
-                            className="text-sm text-blue-600 hover:underline"
+                            className="text-sm text-[var(--subtext-color)]"
                         >
                             {expanded ? "Thu gọn" : "Xem thêm"}
                         </button>
@@ -54,7 +54,6 @@ export function FilterSidebar() {
     return (
         <aside className="w-64 bg-white rounded-lg p-4">
             <h2 className="text-xs font-semibold text-[var(--subtext-color)]">Bộ lọc</h2>
-
             <FilterSection
                 title="Thương hiệu"
                 options={[
