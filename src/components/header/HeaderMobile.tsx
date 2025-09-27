@@ -41,14 +41,14 @@ const HeaderMobile: React.FC = () => {
     <div className="w-full bg-white shadow-md">
       {/* Top icons */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200">
-        <Bell size={20} className="text-gray-700" />
+        <Bell size={20} className="text-[var(--subtext-color)]" />
         <Link href="/" className="header__logo">
           <Image src="/common/logo.svg" alt="NamPerfume Logo" width={150} height={40} priority />
         </Link>
         <div className="flex items-center gap-4">
-          <Search size={20} className="text-gray-700" />
+          <Search size={20} className="text-[var(--subtext-color)]" />
           <div className="relative">
-            <ShoppingCart size={20} className="text-gray-700" />
+            <ShoppingCart size={20} className="text-[var(--subtext-color)]" />
             <span className="absolute -top-2 -right-2 text-xs bg-red-600 text-white rounded-full w-4 h-4 flex items-center justify-center">
               0
             </span>

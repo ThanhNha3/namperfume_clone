@@ -1,5 +1,5 @@
 .product-list {
   &__title {
-    @apply text-gray-700 text-sm leading-relaxed;
+    @apply text-[var(--subtext-color)] text-sm leading-relaxed;
   }
 }

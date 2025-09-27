@@ -24,7 +24,7 @@ export function DesktopCollectionLayout({ collection }: { collection: any }) {
                 <div className="grid grid-cols-4 gap-4">
                     {collection.length === 0
                         ? Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
-                        : collection.map((item, index) => (
+                        : collection.map((item: any, index: number) => (
                             <ProductCard key={`${item.id}-${index}`} item={item} />
                         ))}
                 </div>
