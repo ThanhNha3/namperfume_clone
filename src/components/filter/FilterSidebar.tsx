@@ -52,8 +52,8 @@ const FilterSection = ({ title, options = [], showMore = false }: FilterSectionP
 
 export function FilterSidebar() {
     return (
-        <aside className="w-64 bg-white border border-gray-200 rounded-lg p-4">
-            <h2 className="text-xl font-semibold mb-4">Bộ lọc</h2>
+        <aside className="w-64 bg-white rounded-lg p-4">
+            <h2 className="text-xs font-semibold text-[var(--subtext-color)]">Bộ lọc</h2>
 
             <FilterSection
                 title="Thương hiệu"
