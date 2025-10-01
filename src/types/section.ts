@@ -1,9 +1,9 @@
 // types/section.ts
 
 import { SectionMediaItem } from "./media";
-import { SectionProductItem } from "./product";
+import { I_Product } from "./product";
 
-export interface SectionItem {
+export interface I_SectionItem {
     id: number | string;
     name: string;
     image?: string;
@@ -13,7 +13,7 @@ export interface SectionItem {
 // SECTION LIST PROPS
 export interface SectionListProps {
     title: string;
-    items: SectionItem[] | SectionProductItem[] | SectionMediaItem[];
+    items: I_SectionItem[] | I_Product[] | SectionMediaItem[];
     viewMoreLink?: string;
 }
 

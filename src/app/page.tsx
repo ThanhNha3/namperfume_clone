@@ -19,7 +19,7 @@ import {
   VideoCardSkeleton,
 } from "@/components/common";
 
-import { SectionProductItem } from "@/types/product";
+import { I_Product } from "@/types/product";
 import { SectionMediaItem } from "@/types/media";
 
 const brands = [
@@ -58,11 +58,11 @@ const slidesOnMobile = [
 const DEAL_THOM_PRODUCTS = [
   {
     id: 1,
-    image: "/products/p1.jpg",
+    thumbnail: "/products/p1.jpg",
     name: "Nước hoa Dior Sauvage EDP",
     title: "Nước hoa Dior Sauvage EDP",
     subtitle: "100ml - Eau de Parfum",
-    price: "3.200.000₫",
+    priceRange: "3.200.000₫",
     badges: ["Yêu thích", "Bán chạy"],
     sizes: ["50ml", "100ml", "150ml"],
   },
@@ -71,11 +71,11 @@ const DEAL_THOM_PRODUCTS = [
 const NEW_ARRIVAL_PRODUCTS = [
   {
     id: 1,
-    image: "/products/p2.jpg",
+    thumbnail: "/products/p2.jpg",
     name: "Nước hoa Chanel Bleu De Chanel EDT",
     title: "Nước hoa Chanel Bleu De Chanel EDT",
     subtitle: "100ml - Eau de Toilette",
-    price: "2.800.000₫",
+    priceRange: "2.800.000₫",
     badges: ["Mới"],
     sizes: ["50ml", "100ml"],
   },
@@ -84,11 +84,11 @@ const NEW_ARRIVAL_PRODUCTS = [
 const BEST_SELLER_PRODUCTS = [
   {
     id: 1,
-    image: "/products/p3.jpg",
+    thumbnail: "/products/p3.jpg",
     name: "Nước hoa Versace Eros Pour Homme",
     title: "Nước hoa Versace Eros Pour Homme",
     subtitle: "100ml - Eau de Toilette",
-    price: "2.500.000₫",
+    priceRange: "2.500.000₫",
     badges: ["Bán chạy"],
     sizes: ["50ml", "100ml", "150ml"],
   },
@@ -97,11 +97,11 @@ const BEST_SELLER_PRODUCTS = [
 const MINI_TRAVEL_SIZE_PRODUCTS = [
   {
     id: 1,
-    image: "/products/p4.jpg",
+    thumbnail: "/products/p4.jpg",
     name: "Nước hoa Gucci Guilty Pour Homme",
     title: "Nước hoa Gucci Guilty Pour Homme",
     subtitle: "90ml - Eau de Toilette",
-    price: "2.700.000₫",
+    priceRange: "2.700.000₫",
     badges: ["Yêu thích"],
     sizes: ["50ml", "90ml"],
   },
@@ -110,11 +110,11 @@ const MINI_TRAVEL_SIZE_PRODUCTS = [
 const BODYCARE_HOMECARE_PRODUCTS = [
   {
     id: 1,
-    image: "/products/p5.jpg",
+    thumbnail: "/products/p5.jpg",
     name: "Sữa tắm Bath & Body Works",
     title: "Sữa tắm Bath & Body Works",
     subtitle: "295ml - Shower Gel",
-    price: "350.000₫",
+    priceRange: "350.000₫",
     badges: ["Yêu thích"],
     sizes: ["295ml", "500ml"],
   },
@@ -123,11 +123,11 @@ const BODYCARE_HOMECARE_PRODUCTS = [
 const GIFTSET_PRODUCTS = [
   {
     id: 1,
-    image: "/products/p6.jpg",
+    thumbnail: "/products/p6.jpg",
     name: "Giftset Nước hoa Dior",
     title: "Giftset Nước hoa Dior",
     subtitle: "Bao gồm 3 món",
-    price: "4.500.000₫",
+    priceRange: "4.500.000₫",
     badges: ["Yêu thích", "Bán chạy"],
     sizes: [],
   },
@@ -141,7 +141,7 @@ const BANNER_CATEGORY = [
 
 type DummyData = Record<
   "dealThom" | "newArrival" | "bestSeller" | "miniTravelSize" | "bodycareHomecare" | "giftset",
-  SectionProductItem[]
+  I_Product[]
 >;
 
 const NAMPERFUME_TV = [
@@ -149,28 +149,28 @@ const NAMPERFUME_TV = [
     id: 1,
     thumbnail: "https://i.ytimg.com/vi/3aDs24YQTKo/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=3aDs24YQTKo",
-    name: "Những lần hiếm hoi mà diễn viên không phải diễn 🫣 #cuahangvuive #nuochoa #xuhuong #fyp #namperfume",
+    title: "Những lần hiếm hoi mà diễn viên không phải diễn 🫣 #cuahangvuive #nuochoa #xuhuong #fyp #namperfume",
     views: 1000
   },
   {
     id: 2,
     thumbnail: "https://i.ytimg.com/vi/xh0pQQqbfHI/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=xh0pQQqbfHI",
-    name: `💘Tại sao nước hoa lại có thế "gây thương nhớ"`,
+    title: `💘Tại sao nước hoa lại có thế "gây thương nhớ"`,
     views: 2000
   },
   {
     id: 3,
     thumbnail: "https://i.ytimg.com/vi/3ttq78vGP9o/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=3ttq78vGP9o",
-    name: "Mình vô thẳng vấn đề luôn đc hong ạ? 😌 #khomathom #fypシ゚ #nuochoa #namperfume #shorts #videoshort",
+    title: "Mình vô thẳng vấn đề luôn đc hong ạ? 😌 #khomathom #fypシ゚ #nuochoa #namperfume #shorts #videoshort",
     views: 3234
   },
   {
     id: 4,
     thumbnail: "https://i.ytimg.com/vi/CwiM9b5BuZQ/mqdefault.jpg",
     link: "https://www.youtube.com/watch?v=CwiM9b5BuZQ",
-    name: "2 đứa nó chưa từng hỏi Cô Ba Oanh có muốn hay ko😒#khomathom #nuochoa #namperfume #shorts #videoshort",
+    title: "2 đứa nó chưa từng hỏi Cô Ba Oanh có muốn hay ko😒#khomathom #nuochoa #namperfume #shorts #videoshort",
     views: 3393
   }
 ]
@@ -180,25 +180,25 @@ const NMAGAZINE = [
     id: 1,
     thumbnail: "https://file.hstatic.net/1000340570/article/banner-thuong-hieu-lattafa_37643b6cd970492ab353b44e15a6ad7e.jpeg",
     link: "/",
-    name: "LATTAFA",
+    title: "LATTAFA",
   },
   {
     id: 2,
     thumbnail: "https://file.hstatic.net/1000340570/article/kajal_c7b2b434926442468c73a8039d41e8cd.jpg",
     link: "/",
-    name: `KAJAH`,
+    title: `KAJAH`,
   },
   {
     id: 3,
     thumbnail: "https://file.hstatic.net/1000340570/article/z5579431254972_ef70cc6ef78fa5754d14e9bea82b11a9_86d749ee72ae4f1dae664531022e9111.jpg",
     link: "/",
-    name: "GRITTI",
+    title: "GRITTI",
   },
   {
     id: 4,
     thumbnail: "https://file.hstatic.net/1000340570/article/zaroff-banner-thuong-hieu_9824109c0f914447a2f064817078e88f.jpg",
     link: "/",
-    name: "ZAROFF",
+    title: "ZAROFF",
   },
 ]
 

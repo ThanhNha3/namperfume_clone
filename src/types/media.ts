@@ -1,4 +1,4 @@
-import { SectionItem } from "./section";
+import { I_SectionItem } from "./section";
 
 export interface SectionMediaCardProps {
     id: number;
@@ -9,7 +9,7 @@ export interface SectionMediaCardProps {
 }
 
 // MEDIA TYPES
-export interface SectionMediaItem extends SectionItem {
+export interface SectionMediaItem extends I_SectionItem {
     thumbnail: string;
     title: string;
     link: string;

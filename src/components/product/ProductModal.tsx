@@ -2,17 +2,7 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import Image from "next/image";
-
-type Product = {
-  id: string;
-  name: string;
-  brand: string;
-  code: string;
-  description: string;
-  image: string;
-  sizes: { label: string; price: number; oldPrice?: number }[];
-  isNew?: boolean;
-};
+import { Product } from "@/features/product/productSelectedSlice";
 
 type ProductModalProps = {
   isOpen: boolean;
@@ -51,8 +41,8 @@ export default function ProductModal({ isOpen, onClose, item }: ProductModalProp
           {/* Ảnh */}
           <div className="flex items-center justify-center">
             <Image
-              src={item.image}
-              alt={item.name}
+              src={item?.thumbnail || ""}
+              alt={item?.name || ""}
               width={250}
               height={250}
               className="rounded-md"

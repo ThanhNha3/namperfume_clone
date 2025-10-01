@@ -6,10 +6,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "@/styles/components/_sectionList.scss";
 
 import { SectionListDataProps } from "@/types/section";
-import { SectionProductItem } from "@/types/product";
+import { I_Product } from "@/types/product";
 import { SectionMediaItem } from "@/types/media";
 
-export function SectionDataList<T extends SectionProductItem | SectionMediaItem>({
+export function SectionDataList<T extends I_Product | SectionMediaItem>({
   title,
   items,
   viewMoreLink,

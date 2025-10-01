@@ -1,7 +1,7 @@
-import { SectionProductItem } from "@/types/product";
+import { I_Product } from "@/types/product";
 import { Heart } from "lucide-react";
 
-export const ProductCard = ({ item }: { item: SectionProductItem }) => {
+export const ProductCard = ({ item }: { item: I_Product }) => {
     return (
         <div
             key={`${item.id}_${item.name}`}
@@ -27,7 +27,7 @@ export const ProductCard = ({ item }: { item: SectionProductItem }) => {
             {/* Product image */}
             <div className="relative w-full h-48 flex items-center justify-center">
                 <img
-                    src={item.image}
+                    src={item.thumbnail}
                     alt={item.name}
                     className="max-h-full object-contain"
                 />
@@ -45,7 +45,7 @@ export const ProductCard = ({ item }: { item: SectionProductItem }) => {
                 </h4>)}
                 <p className="text-xs text-[var(--color-text)] line-clamp-2 h-[32px]">{item.name}</p>
                 <p className="text-[var(--color-primary)] font-semibold text-xs pt-2">
-                    {item.price}
+                    {item.priceRange}
                 </p>
                 <p className="text-xs text-[var(--color-text)] pt-2">
                     {`${item.sizes?.length} size${item.sizes?.length !== 1 ? "s" : ""}`}

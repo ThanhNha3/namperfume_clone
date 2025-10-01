@@ -1,6 +1,6 @@
 import "@/styles/components/_videoCard.scss"
 import Link from "next/link";
-import { SectionMediaCardProps } from "@/types/section";
+import { SectionMediaCardProps } from "@/types/media";
 
 export const MediaCard = ({ item }: { item: SectionMediaCardProps }) => {
     return (
@@ -8,7 +8,7 @@ export const MediaCard = ({ item }: { item: SectionMediaCardProps }) => {
             href={item.link}
             target="_blank" rel="noopener noreferrer"
             key={`${item.id}_${item.title}`}
-            className="min-w-3/4 md:min-w-1/4"
+            className="min-w-3/4 md:min-w-1/4 text-[var(--color-text)]"
         >
             <div className="w-full h-48 overflow-hidden">
                 <img
@@ -19,7 +19,7 @@ export const MediaCard = ({ item }: { item: SectionMediaCardProps }) => {
             </div>
             {/* Info */}
             <div className="video-info mt-2 pt-2 px-4 w-full flex flex-col justify-between">
-                <h4 className="video-title text-xs uppercase">{item.title}</h4>
+                <h4 className="video-title text-sm uppercase">{item.title}</h4>
                 <span className="text-xs text-[var(--color-bg-muted)]">{item.views && `${item.views} Views`}</span>
             </div>
         </Link>
