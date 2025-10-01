@@ -3,20 +3,11 @@
 import { useState } from "react";
 import { Heart } from "lucide-react";
 import "@/styles/components/_productList.scss";
-
-type Product = {
-  id: string;
-  name: string;
-  brand: string;
-  price: string;
-  salePrice?: string;
-  sizes: string[];
-  image: string;
-};
+import { I_Product } from "@/types/product";
 
 type Props = {
   titleType: "male" | "female";
-  products: Product[];
+  products: I_Product[];
   perPage?: number;
 };
 
@@ -52,7 +43,7 @@ export default function ProductList({
             </button>
             <div className="aspect-square flex items-center justify-center">
               <img
-                src={p.image}
+                src={p.thumbnail}
                 alt={p.name}
                 className="max-h-full object-contain"
               />
@@ -60,17 +51,7 @@ export default function ProductList({
             <div className="mt-3 space-y-1">
               <p className="text-sm font-semibold uppercase">{p.brand}</p>
               <p className="text-sm">{p.name}</p>
-              {p.salePrice ? (
-                <div className="space-x-2">
-                  <span className="text-red-600 font-bold">{p.salePrice}</span>
-                  <span className="line-through text-gray-400 text-sm">
-                    {p.price}
-                  </span>
-                </div>
-              ) : (
-                <span className="text-red-600 font-bold">{p.price}</span>
-              )}
-              <p className="text-xs text-gray-500">{p.sizes.length} Sizes</p>
+              <p className="text-sm text-[var(--subtext-color)]">{p?.sizes?.length} Sizes</p>
             </div>
           </div>
         ))}
@@ -82,11 +63,10 @@ export default function ProductList({
           <button
             key={i}
             onClick={() => setPage(i + 1)}
-            className={`px-3 py-1 rounded ${
-              page === i + 1
-                ? "bg-black text-white"
-                : "bg-gray-100 hover:bg-gray-200"
-            }`}
+            className={`px-3 py-1 rounded ${page === i + 1
+              ? "bg-black text-white"
+              : "bg-gray-100 hover:bg-gray-200"
+              }`}
           >
             {i + 1}
           </button>

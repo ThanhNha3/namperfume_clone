@@ -64,7 +64,11 @@ const DEAL_THOM_PRODUCTS = [
     subtitle: "100ml - Eau de Parfum",
     priceRange: "3.200.000₫",
     badges: ["Yêu thích", "Bán chạy"],
-    sizes: ["50ml", "100ml", "150ml"],
+    sizes: [{
+      id: 1, label: "50ml", price: 2200000
+    }, {
+      id: 2, label: "100ml", price: 3200000
+    }],
   },
 ]
 
@@ -77,7 +81,11 @@ const NEW_ARRIVAL_PRODUCTS = [
     subtitle: "100ml - Eau de Toilette",
     priceRange: "2.800.000₫",
     badges: ["Mới"],
-    sizes: ["50ml", "100ml"],
+    sizes: [{
+      id: 1, label: "50ml", price: 2200000
+    }, {
+      id: 2, label: "100ml", price: 3200000
+    }],
   },
 ]
 
@@ -90,7 +98,11 @@ const BEST_SELLER_PRODUCTS = [
     subtitle: "100ml - Eau de Toilette",
     priceRange: "2.500.000₫",
     badges: ["Bán chạy"],
-    sizes: ["50ml", "100ml", "150ml"],
+    sizes: [{
+      id: 1, label: "50ml", price: 2200000
+    }, {
+      id: 2, label: "100ml", price: 3200000
+    }],
   },
 ]
 
@@ -103,7 +115,11 @@ const MINI_TRAVEL_SIZE_PRODUCTS = [
     subtitle: "90ml - Eau de Toilette",
     priceRange: "2.700.000₫",
     badges: ["Yêu thích"],
-    sizes: ["50ml", "90ml"],
+    sizes: [{
+      id: 1, label: "50ml", price: 2200000
+    }, {
+      id: 2, label: "100ml", price: 3200000
+    }],
   },
 ]
 
@@ -116,7 +132,11 @@ const BODYCARE_HOMECARE_PRODUCTS = [
     subtitle: "295ml - Shower Gel",
     priceRange: "350.000₫",
     badges: ["Yêu thích"],
-    sizes: ["295ml", "500ml"],
+    sizes: [{
+      id: 1, label: "50ml", price: 2200000
+    }, {
+      id: 2, label: "100ml", price: 3200000
+    }],
   },
 ]
 
@@ -129,7 +149,11 @@ const GIFTSET_PRODUCTS = [
     subtitle: "Bao gồm 3 món",
     priceRange: "4.500.000₫",
     badges: ["Yêu thích", "Bán chạy"],
-    sizes: [],
+    sizes: [{
+      id: 1, label: "50ml", price: 2200000
+    }, {
+      id: 2, label: "100ml", price: 3200000
+    }],
   },
 ]
 

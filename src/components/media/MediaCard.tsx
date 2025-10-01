@@ -20,7 +20,7 @@ export const MediaCard = ({ item }: { item: SectionMediaCardProps }) => {
             {/* Info */}
             <div className="video-info mt-2 pt-2 px-4 w-full flex flex-col justify-between">
                 <h4 className="video-title text-sm uppercase">{item.title}</h4>
-                <span className="text-xs text-[var(--color-bg-muted)]">{item.views && `${item.views} Views`}</span>
+                <span className="text-sm text-[var(--color-bg-muted)]">{item.views && `${item.views} Views`}</span>
             </div>
         </Link>
     );

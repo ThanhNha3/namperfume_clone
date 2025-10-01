@@ -40,14 +40,14 @@ export const ProductCard = ({ item }: { item: I_Product }) => {
 
             {/* Info */}
             <div className="mt-2 text-left">
-                {item?.brand && (<h4 className="font-bold text-xs text-[var(--color-text)] uppercase truncate">
+                {item?.brand && (<h4 className="font-bold text-sm text-[var(--color-text)] uppercase truncate">
                     {item?.brand}
                 </h4>)}
-                <p className="text-xs text-[var(--color-text)] line-clamp-2 h-[32px]">{item.name}</p>
-                <p className="text-[var(--color-primary)] font-semibold text-xs pt-2">
+                <p className="text-sm text-[var(--color-text)] line-clamp-2 h-[35px]">{item.name}</p>
+                <p className="text-[var(--color-primary)] font-semibold text-sm pt-2">
                     {item.priceRange}
                 </p>
-                <p className="text-xs text-[var(--color-text)] pt-2">
+                <p className="text-sm text-[var(--color-text)] pt-2">
                     {`${item.sizes?.length} size${item.sizes?.length !== 1 ? "s" : ""}`}
                 </p>
             </div>

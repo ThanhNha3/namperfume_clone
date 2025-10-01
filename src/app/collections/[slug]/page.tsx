@@ -4,20 +4,11 @@ import { useState } from "react";
 import { Heart } from "lucide-react";
 import "@/styles/components/_productList.scss";
 import HandleCollectionLayout from "@/components/Layout/HandleCollectionLayout";
-
-type Product = {
-  id: string;
-  name: string;
-  brand: string;
-  price: string;
-  salePrice?: string;
-  sizes: string[];
-  image: string;
-};
+import { I_Product } from "@/types/product";
 
 type Props = {
   titleType: "male" | "female";
-  products: Product[];
+  products: I_Product[];
   perPage?: number;
 };
 
@@ -26,57 +17,54 @@ const TITLE_MAP: Record<"male" | "female", string> = {
   female: `Các quý cô tìm đến nước hoa để làm gì? Có lẽ là để trở nên quyến rũ, duyên dáng và tự tin hơn trong phong cách, phải chứ? Namperfume thấu hiểu các quý cô của chúng ta, đem tới những mùi hương tinh tế, ngọt ngào, sang trọng và không thể nhầm lẫn.`,
 };
 
-export const dummyProducts: Product[] = [
+export const dummyProducts: I_Product[] = [
   {
-    id: "1",
+    id: 1,
     name: "Burberry Hero Parfum Intense",
     brand: "BURBERRY",
-    price: "3,350,000₫",
-    salePrice: "2,950,000₫",
-    sizes: ["50ml", "100ml"],
-    image: "/products/p1.jpg",
+    priceRange: "3,350,000₫",
+    sizes: [{ id: 1, label: "50ml" }, { id: 2, label: "100ml" }],
+    thumbnail: "/products/p1.jpg",
   },
   {
-    id: "2",
+    id: 2,
     name: "Dior Sauvage Eau de Toilette",
     brand: "DIOR",
-    price: "3,200,000₫",
-    sizes: ["60ml", "100ml"],
-    image: "/products/p2.jpg",
+    priceRange: "3,200,000₫",
+    sizes: [{ id: 1, label: "50ml" }, { id: 2, label: "100ml" }],
+    thumbnail: "/products/p2.jpg",
   },
   {
-    id: "3",
+    id: 3,
     name: "Chanel Bleu de Chanel",
     brand: "CHANEL",
-    price: "3,800,000₫",
-    salePrice: "3,500,000₫",
-    sizes: ["50ml", "100ml"],
-    image: "/products/p3.jpg",
+    priceRange: "3,800,000₫",
+    sizes: [{ id: 1, label: "50ml" }, { id: 2, label: "100ml" }],
+    thumbnail: "/products/p3.jpg",
   },
   {
-    id: "4",
+    id: 4,
     name: "Yves Saint Laurent La Nuit de L'Homme",
     brand: "YSL",
-    price: "2,900,000₫",
-    sizes: ["60ml", "100ml"],
-    image: "/products/p4.jpg",
+    priceRange: "2,900,000₫",
+    sizes: [{ id: 1, label: "50ml" }, { id: 2, label: "100ml" }],
+    thumbnail: "/products/p4.jpg",
   },
   {
-    id: "5",
+    id: 5,
     name: "Giorgio Armani Acqua di Giò Profumo",
     brand: "ARMANI",
-    price: "3,600,000₫",
-    salePrice: "3,200,000₫",
-    sizes: ["75ml", "125ml"],
-    image: "/products/p5.jpg",
+    priceRange: "3,600,000₫",
+    sizes: [{ id: 1, label: "50ml" }, { id: 2, label: "100ml" }],
+    thumbnail: "/products/p5.jpg",
   },
   {
-    id: "6",
+    id: 6,
     name: "Tom Ford Noir Extreme",
     brand: "TOM FORD",
-    price: "4,200,000₫",
-    sizes: ["50ml", "100ml"],
-    image: "/products/p6.jpg",
+    priceRange: "4,200,000₫",
+    sizes: [{ id: 1, label: "50ml" }, { id: 2, label: "100ml" }],
+    thumbnail: "/products/p6.jpg",
   }
 ];
 
