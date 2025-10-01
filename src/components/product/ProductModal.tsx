@@ -2,12 +2,13 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import Image from "next/image";
-import { Product } from "@/features/product/productSelectedSlice";
+
+import { I_Product } from "@/types/product";
 
 type ProductModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  item: Product | null;
+  item: I_Product | null;
 };
 
 export default function ProductModal({ isOpen, onClose, item }: ProductModalProps) {
@@ -25,9 +26,8 @@ export default function ProductModal({ isOpen, onClose, item }: ProductModalProp
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50">
       <div
-        className={`relative mt-10 w-full max-w-3xl transform rounded-xl bg-white p-6 shadow-lg transition-transform duration-300 ${
-          isOpen ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
-        }`}
+        className={`relative mt-10 w-full max-w-3xl transform rounded-xl bg-white p-6 shadow-lg transition-transform duration-300 ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
+          }`}
       >
         {/* Nút đóng */}
         <button
@@ -58,21 +58,15 @@ export default function ProductModal({ isOpen, onClose, item }: ProductModalProp
             </p>
             <p className="text-xs text-gray-400">Mã hàng: {item.code}</p>
 
-            {item.isNew && (
-              <span className="mt-1 inline-block rounded bg-red-500 px-2 py-0.5 text-xs text-white">
-                New
-              </span>
-            )}
-
             <p className="mt-3 line-clamp-3 text-sm text-gray-700">
-              {item.description}
+              {item.shortDescription}
             </p>
 
             {/* Size chọn */}
             <div className="mt-4">
               <p className="text-sm font-medium">Lựa chọn size</p>
               <div className="mt-2 flex gap-2">
-                {item.sizes.map((s, i) => (
+                {item?.sizes?.map((s, i) => (
                   <button
                     key={i}
                     className="rounded-lg border px-3 py-1 text-sm hover:border-red-500 hover:text-red-500"
@@ -86,11 +80,11 @@ export default function ProductModal({ isOpen, onClose, item }: ProductModalProp
             {/* Giá */}
             <div className="mt-4">
               <p className="text-xl font-bold text-red-600">
-                {item.sizes[0].price.toLocaleString()}đ
+                {item?.sizes?.[0]?.price?.toLocaleString()}đ
               </p>
-              {item.sizes[0].oldPrice && (
+              {item?.sizes?.[0]?.oldPrice && (
                 <p className="text-sm text-gray-500 line-through">
-                  {item.sizes[0].oldPrice.toLocaleString()}đ
+                  {item?.sizes?.[0]?.oldPrice?.toLocaleString()}đ
                 </p>
               )}
             </div>
