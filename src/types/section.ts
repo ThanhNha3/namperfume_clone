@@ -11,9 +11,9 @@ export interface I_SectionItem {
 }
 
 // SECTION LIST PROPS
-export interface SectionListProps {
+export interface SectionListProps<T = I_SectionItem | I_Product | SectionMediaItem> {
     title: string;
-    items: I_SectionItem[] | I_Product[] | SectionMediaItem[];
+    items: T[];
     viewMoreLink?: string;
 }
 

@@ -157,7 +157,7 @@ export function SectionDataList<T extends I_Product | SectionMediaItem>({
         {/* Scroll container */}
         <div
           ref={containerRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide cursor-grab"
+          className="flex gap-4 overflow-x-auto scrollbar-hide cursor-grab h-max"
           onMouseDown={(e) => startDrag(e.pageX)}
           onMouseUp={stopDrag}
           onMouseLeave={stopDrag}

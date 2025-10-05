@@ -5,10 +5,10 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { PromoSliderProps } from "@/types/promoSlider";
 
-export function PromoSlider({ 
-  isShowIndicator = true, 
-  slides = [], 
-  timeTransition = 10000 
+export function PromoSlider({
+  isShowIndicator = true,
+  slides = [],
+  timeTransition = 10000
 }: PromoSliderProps) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0); // -1 = prev, 1 = next
@@ -65,6 +65,7 @@ export function PromoSlider({
           <Image
             src={slides[index].src}
             alt={`Slide ${slides[index].id}`}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             fill
             className="object-cover"
             priority
@@ -82,9 +83,8 @@ export function PromoSlider({
                 setDirection(i > index ? 1 : -1);
                 setIndex(i);
               }}
-              className={`h-[3px] sm:h-[4px] rounded-full transition-all duration-300 ${
-                i === index ? "w-8 bg-white" : "w-4 bg-white/60"
-              }`}
+              className={`h-[3px] sm:h-[4px] rounded-full transition-all duration-300 ${i === index ? "w-8 bg-white" : "w-4 bg-white/60"
+                }`}
             />
           ))}
         </div>

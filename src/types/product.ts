@@ -28,4 +28,5 @@ export interface I_ProductDetail extends I_Product {
     fragranceFamily?: string; // nhóm hương (Woody, Floral,...)
     style?: string;         // phong cách (Thanh lịch, Năng động,...)
     description?: string;   // mô tả chi tiết
+    images?: string[];     // danh sách link ảnh chi tiết
 }

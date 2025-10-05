@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { WINDOW_SIZES } from "@/constants/common";
@@ -21,6 +21,8 @@ import {
 
 import { I_Product } from "@/types/product";
 import { SectionMediaItem } from "@/types/media";
+import ProductModal from "@/components/product/ProductModal";
+import { useAppSelector } from "@/store/hooks";
 
 const brands = [
   { id: 1, name: "Gucci", image: "/brands/logo-brand-gucci.png" },
@@ -57,17 +59,22 @@ const slidesOnMobile = [
 
 const DEAL_THOM_PRODUCTS = [
   {
-    id: 1,
+    id: 6,
     thumbnail: "/products/p1.jpg",
     name: "Nước hoa Dior Sauvage EDP",
+    brand: "Dior",
+    code: " 110100204074",
+    reviewsCount: 55,
+    rating: 5,
+    shortDescription: " Nước hoa Dior Sauvage EDP - Phiên bản Eau de Parfum",
     title: "Nước hoa Dior Sauvage EDP",
     subtitle: "100ml - Eau de Parfum",
     priceRange: "3.200.000₫",
     badges: ["Yêu thích", "Bán chạy"],
     sizes: [{
-      id: 1, label: "50ml", price: 2200000
+      id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
-      id: 2, label: "100ml", price: 3200000
+      id: 2, label: "100ml", price: 3200000, oldPrice: 3500000, percentSale: 10, tags: ["Bán chạy"]
     }],
   },
 ]
@@ -78,81 +85,102 @@ const NEW_ARRIVAL_PRODUCTS = [
     thumbnail: "/products/p2.jpg",
     name: "Nước hoa Chanel Bleu De Chanel EDT",
     title: "Nước hoa Chanel Bleu De Chanel EDT",
+    brand: "Chanel",
+    code: " 1101002003032",
+    reviewsCount: 55,
+    rating: 5,
+    shortDescription: " Nước hoa Chanel Bleu De Chanel EDT - Phiên bản Eau de Toilette",
     subtitle: "100ml - Eau de Toilette",
     priceRange: "2.800.000₫",
     badges: ["Mới"],
     sizes: [{
-      id: 1, label: "50ml", price: 2200000
+      id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
-      id: 2, label: "100ml", price: 3200000
+      id: 2, label: "100ml", price: 3200000, oldPrice: 3500000, percentSale: 10, tags: ["Bán chạy"]
     }],
   },
 ]
 
 const BEST_SELLER_PRODUCTS = [
   {
-    id: 1,
+    id: 2,
     thumbnail: "/products/p3.jpg",
     name: "Nước hoa Versace Eros Pour Homme",
     title: "Nước hoa Versace Eros Pour Homme",
+    brand: "Versace",
+    code: " 110134994442",
+    reviewsCount: 55,
+    rating: 5,
+    shortDescription: " Nước hoa Versace Eros Pour Homme - Phiên bản Eau de Toilette",
     subtitle: "100ml - Eau de Toilette",
     priceRange: "2.500.000₫",
     badges: ["Bán chạy"],
     sizes: [{
-      id: 1, label: "50ml", price: 2200000
+      id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
-      id: 2, label: "100ml", price: 3200000
+      id: 2, label: "100ml", price: 3200000, oldPrice: 3500000, percentSale: 10, tags: ["Bán chạy"]
     }],
   },
 ]
 
 const MINI_TRAVEL_SIZE_PRODUCTS = [
   {
-    id: 1,
+    id: 3,
     thumbnail: "/products/p4.jpg",
     name: "Nước hoa Gucci Guilty Pour Homme",
     title: "Nước hoa Gucci Guilty Pour Homme",
+    brand: "Gucci",
+    code: " 110100204432",
+    reviewsCount: 55,
+    rating: 5,
+    shortDescription: " Nước hoa Gucci Guilty Pour Homme - Phiên bản mini 90ml",
     subtitle: "90ml - Eau de Toilette",
     priceRange: "2.700.000₫",
     badges: ["Yêu thích"],
     sizes: [{
-      id: 1, label: "50ml", price: 2200000
+      id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
-      id: 2, label: "100ml", price: 3200000
+      id: 2, label: "100ml", price: 3200000, oldPrice: 3500000, percentSale: 10, tags: ["Bán chạy"]
     }],
   },
 ]
 
 const BODYCARE_HOMECARE_PRODUCTS = [
   {
-    id: 1,
+    id: 4,
     thumbnail: "/products/p5.jpg",
     name: "Sữa tắm Bath & Body Works",
+    brands: "Bath & Body Works",
     title: "Sữa tắm Bath & Body Works",
     subtitle: "295ml - Shower Gel",
     priceRange: "350.000₫",
     badges: ["Yêu thích"],
     sizes: [{
-      id: 1, label: "50ml", price: 2200000
+      id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
-      id: 2, label: "100ml", price: 3200000
+      id: 2, label: "100ml", price: 3200000, oldPrice: 3500000, percentSale: 10, tags: ["Bán chạy"]
     }],
   },
 ]
 
 const GIFTSET_PRODUCTS = [
   {
-    id: 1,
+    id: 5,
     thumbnail: "/products/p6.jpg",
     name: "Giftset Nước hoa Dior",
+    brand: "Dior",
+    code: " 110100204074",
+    reviewsCount: 55,
+    rating: 5,
+    shortDescription: " Giftset Nước hoa Dior - Bao gồm 3 món",
     title: "Giftset Nước hoa Dior",
     subtitle: "Bao gồm 3 món",
     priceRange: "4.500.000₫",
     badges: ["Yêu thích", "Bán chạy"],
     sizes: [{
-      id: 1, label: "50ml", price: 2200000
+      id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
-      id: 2, label: "100ml", price: 3200000
+      id: 2, label: "100ml", price: 3200000, oldPrice: 3500000, percentSale: 10, tags: ["Bán chạy"]
     }],
   },
 ]
@@ -230,7 +258,8 @@ const NMAGAZINE = [
 export default function Home() {
   // STATES
   const [slides, setSlides] = useState(slidesOnDesktop);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<I_Product | null>(null);
   const [dummyDatas, setDummyDatas] = useState<DummyData>({
     dealThom: DEAL_THOM_PRODUCTS,
     newArrival: NEW_ARRIVAL_PRODUCTS,
@@ -239,6 +268,7 @@ export default function Home() {
     bodycareHomecare: BODYCARE_HOMECARE_PRODUCTS,
     giftset: GIFTSET_PRODUCTS,
   })
+  const productSelected = useAppSelector((state) => state.productSelected);
 
   // HOOKS
   const width = useWindowSize();
@@ -252,6 +282,23 @@ export default function Home() {
   }, [width])
 
   useEffect(() => {
+    generateDummyData();
+  }, []);
+
+  useEffect(() => {
+    if (productSelected && productSelected.id) {
+      setSelectedProduct(productSelected);
+      setIsModalOpen(true);
+    }
+  }, [productSelected]);
+
+  // FUNCTIONS
+  function handleCloseModal() {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
+
+  function generateDummyData() {
     setDummyDatas((prev) => {
       const newData = { ...prev };
 
@@ -263,10 +310,10 @@ export default function Home() {
           id: index + 1,
         }));
       });
-
       return newData;
     });
-  }, []);
+  }
+
 
   return (
     <div>
@@ -286,6 +333,7 @@ export default function Home() {
         <SectionDataList title="Nmagazine" items={NMAGAZINE} viewMoreLink="/videos" SkeletonComponentUI={VideoCardSkeleton} ItemComponentUI={MediaCard as React.ComponentType<{ item: SectionMediaItem }>} />
       </div>
       <AboutNamPerfume />
+      <ProductModal isOpen={isModalOpen} onClose={handleCloseModal} product={selectedProduct} />
     </div>
   );
 }

@@ -9,7 +9,7 @@ const productSelectedSlice = createSlice({
   reducers: {
     // update product
     setProductSelected(state, action: PayloadAction<I_Product>) {
-      state = action.payload
+      return { ...action.payload }
     }
   }
 })
