@@ -117,7 +117,7 @@ export default function Footer() {
             <p>
               GỌI ĐẶT MUA:{" "}
               <span className="inline-flex items-center gap-1">
-                <Phone size={14} /> <strong>1900 0129</strong>
+                <strong>1900 0129</strong>
               </span>{" "}
               (9:00 - 21:00)
             </p>
