@@ -60,7 +60,7 @@ export function SectionDataList<T extends I_Product | SectionMediaItem>({
   // click scroll
   const scrollByOne = (direction: "left" | "right") => {
     if (!containerRef.current) return;
-    const itemWidth = containerRef.current.querySelector("div")?.clientWidth || 200;
+    const itemWidth = 200; 
     containerRef.current.scrollBy({
       left: direction === "right" ? itemWidth : -itemWidth,
       behavior: "smooth",
