@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, Search, ShoppingCart, Store, User, UserCircle } from "lucide-react";
+import { Chrome, Facebook, Heart, Search, ShoppingCart, Store, User, UserCircle } from "lucide-react";
 
 import "@/styles/layout/_header.scss";
 
@@ -128,13 +128,13 @@ export default function HeaderDesktop() {
 
                                         <div className="flex gap-2 mb-3">
                                             <Link
-                                                href="/login"
+                                                href="/auth/login"
                                                 className="flex-1 text-center text-xs border rounded-md p-2 font-medium hover:bg-[var(--color-primary)] hover:text-white transition"
                                             >
                                                 Đăng nhập
                                             </Link>
                                             <Link
-                                                href="/register"
+                                                href="/auth/register"
                                                 className="flex-1 text-center text-xs border rounded-md p-2 font-medium hover:bg-[var(--color-primary)] hover:text-white transition"
                                             >
                                                 Đăng ký
@@ -145,13 +145,13 @@ export default function HeaderDesktop() {
                                             <p className="text-xs mb-2 text-center">Hoặc đăng nhập với</p>
 
                                             <div className="flex flex-col gap-2">
-                                                <button className="cursor-pointer flex items-center gap-2 justify-center border rounded-md p-2 hover:bg-gray-100 transition">
-                                                    <Image src="/common/logo-google.png" alt="Google" width={14} height={14} />
-                                                    Đăng nhập với Google
+                                                <button className="w-full flex items-center justify-center gap-2 border rounded-md py-2 hover:bg-gray-50">
+                                                    <Chrome className="text-red-600" size={18} />
+                                                    Đăng Nhập Với Google
                                                 </button>
-                                                <button className="cursor-pointer flex items-center gap-2 justify-center border rounded-md p-2 hover:bg-gray-100 transition">
-                                                    <Image src="/common/logo-facebook.png" alt="Facebook" width={14} height={14} />
-                                                    Đăng nhập với Facebook
+                                                <button className="w-full flex items-center justify-center gap-2 border rounded-md py-2 hover:bg-gray-50">
+                                                    <Facebook className="text-blue-600" size={18} />
+                                                    Đăng Nhập Với Facebook
                                                 </button>
                                             </div>
                                         </div>
