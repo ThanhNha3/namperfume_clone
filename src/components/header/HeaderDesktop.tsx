@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, Search, ShoppingCart, Store, User } from "lucide-react";
+import { Heart, Search, ShoppingCart, Store, User, UserCircle } from "lucide-react";
 
 import "@/styles/layout/_header.scss";
 
@@ -108,10 +108,58 @@ export default function HeaderDesktop() {
                         </Link>
 
                         {/* Item 3 */}
-                        <Link href="#" className="header__actions__item">
-                            <User size={20} />
-                            <span>Đăng nhập</span>
-                        </Link>
+                        <div className="relative">
+                            <div className="group header__actions__item__login flex items-center gap-1 cursor-pointer">
+                                <User size={20} />
+                                <span>Đăng nhập</span>
+                                {/* Dropdown */}
+                                <div
+                                    className="login__dropdown absolute right-0 top-full mt-2 w-68 bg-white border border-[var(--color-border)] rounded-md shadow-lg 
+      hidden translate-y-2 z-50 group-hover:block"
+                                >
+                                    <div className="p-4">
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <div><UserCircle color="var(--subtext-color)" size={24} /></div>
+                                            <div>
+                                                <p className="text-sm font-medium">Chào bạn</p>
+                                                <p className="text-xs">Đăng nhập để tham gia với chúng tôi</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex gap-2 mb-3">
+                                            <Link
+                                                href="/login"
+                                                className="flex-1 text-center text-xs border rounded-md p-2 font-medium hover:bg-[var(--color-primary)] hover:text-white transition"
+                                            >
+                                                Đăng nhập
+                                            </Link>
+                                            <Link
+                                                href="/register"
+                                                className="flex-1 text-center text-xs border rounded-md p-2 font-medium hover:bg-[var(--color-primary)] hover:text-white transition"
+                                            >
+                                                Đăng ký
+                                            </Link>
+                                        </div>
+
+                                        <div className="border-t pt-2">
+                                            <p className="text-xs mb-2 text-center">Hoặc đăng nhập với</p>
+
+                                            <div className="flex flex-col gap-2">
+                                                <button className="cursor-pointer flex items-center gap-2 justify-center border rounded-md p-2 hover:bg-gray-100 transition">
+                                                    <Image src="/common/logo-google.png" alt="Google" width={14} height={14} />
+                                                    Đăng nhập với Google
+                                                </button>
+                                                <button className="cursor-pointer flex items-center gap-2 justify-center border rounded-md p-2 hover:bg-gray-100 transition">
+                                                    <Image src="/common/logo-facebook.png" alt="Facebook" width={14} height={14} />
+                                                    Đăng nhập với Facebook
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         {/* Item 4: Heart */}
                         <Link href="#" className="header__actions__item relative">

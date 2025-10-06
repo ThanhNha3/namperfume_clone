@@ -52,6 +52,20 @@
         svg {
           color: var(--color-text-muted);
         }
+        &__login {
+          position: relative;
+          .login__dropdown {
+            ::before {
+              content: "";
+              display: block;
+              position: absolute;
+              top: -10%;
+              height: 40px;
+              width: 100%;
+              background: transparent;
+            }
+          }
+        }
       }
     }
   }
@@ -64,7 +78,6 @@
       font-size: 14px;
       justify-content: center;
       position: relative;
-
 
       li {
         &.highlight a {
