@@ -99,7 +99,7 @@ export default function LoginPage() {
                     Trở thành thành viên của namperfume để nhận những ưu đãi và dịch vụ bất ngờ.
                 </p>
                 <Link
-                    href="/register"
+                    href="/auth/register"
                     className="inline-block bg-white text-black font-medium py-2 px-6 rounded-md hover:bg-gray-200 transition"
                 >
                     Đăng Ký

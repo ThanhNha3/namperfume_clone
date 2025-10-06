@@ -13,7 +13,9 @@ export default function RegisterPage() {
         <div className="min-h-screen bg-white flex flex-col items-center text-[var(--color-text)]">
             {/* Logo */}
             <div className="py-6">
-                <Image src="/common/logo.svg" alt="NamPerfume Logo" width={150} height={50} />
+                <Link href="/">
+                    <Image src="/common/logo.svg" alt="NamPerfume Logo" width={150} height={50} />
+                </Link>
             </div>
 
             {/* Login Section */}
@@ -22,7 +24,7 @@ export default function RegisterPage() {
                     <p className="text-lg font-semibold mb-1">Đã là thành viên?</p>
                     <p className="text-sm mb-4">Đăng nhập để truy cập vào tài khoản của bạn</p>
                     <Link
-                        href="/login"
+                        href="/auth/login"
                         className="w-full inline-block bg-white text-[var(--color-text)] font-semibold px-6 p-2 rounded-sm text-sm hover:bg-gray-200 transition"
                     >
                         Đăng Nhập
@@ -118,7 +120,7 @@ export default function RegisterPage() {
                     {/* Nút đăng ký */}
                     <button
                         type="submit"
-                        className="bg-[var(--color-primary)] cursor-pointer text-white py-2 mt-4 rounded-md hover:bg-red-700 transition font-semibold"
+                        className="bg-[var(--color-primary)] text-white py-2 mt-4 rounded-md hover:bg-red-700 transition font-semibold"
                     >
                         Đăng Ký
                     </button>

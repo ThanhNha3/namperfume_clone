@@ -1,24 +1,30 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
 import HeaderDesktop from "./HeaderDesktop";
 import HeaderMobile from "./HeaderMobile";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { WINDOW_SIZES } from "@/constants/common";
+import { usePathname } from "next/navigation";
 
 export default function HandleHeaderDisplay() {
-    const width = useWindowSize();
-    const [isClient, setIsClient] = useState(false);
+  const width = useWindowSize();
+  const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
 
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
-    if (!isClient) {
-        // Tạm thời render empty để tránh mismatch
-        return null;
-    }
+  if (!isClient) {
+    // Tránh hydration mismatch
+    return null;
+  }
 
-    return width >= WINDOW_SIZES.laptop ? <HeaderDesktop /> : <HeaderMobile />;
+  // Ẩn header trên các trang auth và admin
+  if (pathname.startsWith("/auth")) {
+    return null;
+  }
+
+  return width >= WINDOW_SIZES.laptop ? <HeaderDesktop /> : <HeaderMobile />;
 }
