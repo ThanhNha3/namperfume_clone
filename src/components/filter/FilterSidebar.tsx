@@ -72,7 +72,22 @@ export function FilterSidebar() {
 
             <FilterSection title="Mức giá" options={["Dưới 1 triệu", "1 - 2 triệu", "2 - 3 triệu", "Trên 3 triệu"]} />
             <FilterSection title="Size" options={["10ml", "30ml", "50ml", "100ml"]} />
-            <FilterSection title="Đánh giá" options={["5 sao", "4 sao trở lên", "3 sao trở lên"]} />
+            <FilterSection title="Giới tính" options={["Nam", "Nữ", "Unisex"]} />
+            <FilterSection
+                showMore={true}
+                title="Tông mùi gốc"
+                options={[
+                    "Gỗ",
+                    "Hoa",
+                    "Trái cây",
+                    "Hổ phách",
+                    "Xạ hương",
+                    "Biển",
+                    "Phương Đông",
+                    "Gia vị",
+                    "Da thuộc",
+                ]}
+            />
         </aside>
     );
 }
