@@ -21,7 +21,7 @@ export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = f
   return (
     <article
       key={`${item.id}_${item.name}`}
-      className={`group min-w-[160px] max-w-[200px] ${isShowAddToCart ? "h-[370px]" : "h-[320px]"} flex-shrink-0 relative px-2 select-none will-change-transform`}
+      className={`group min-w-[160px] max-w-[200px] ${isShowAddToCart ? "h-[370px]" : "h-[320px]"} flex flex-col flex-shrink-0 relative px-2 select-none will-change-transform`}
     >
       {/* Icon Heart */}
       <button
@@ -68,14 +68,13 @@ export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = f
         </button>
       </div>
 
-      {/* Info */}
-      <div className="mt-2 text-left">
+      <div className="mt-2 text-left flex-grow">
         {item?.brand && (
           <h4 className="font-bold text-sm text-[var(--color-text)] uppercase truncate">
             {item.brand}
           </h4>
         )}
-        <p className="text-sm text-[var(--color-text)] clamp-2">
+        <p className="text-sm text-[var(--color-text)] clamp-2 h-[2.5em] leading-tight" title={item.name}>
           {item.name}
         </p>
         <p className="text-[var(--color-primary)] font-semibold text-sm pt-2">
@@ -85,13 +84,15 @@ export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = f
           {`${item.sizes?.length} size${item.sizes?.length !== 1 ? "s" : ""}`}
         </p>
       </div>
-      {
-        isShowAddToCart && (
-          <div className="flex justify-center items-center mt-2">
-            <button className="cursor-pointer flex-1 p-2 border border-[var(--color-primary)] text-[var(--color-primary)] rounded-xs hover:bg-[var(--color-primary)] hover:text-white transition-all">Thêm vào giỏ hàng</button>
-          </div>
-        )
-      }
+
+      {/* Nút Thêm vào giỏ hàng — luôn nằm sát đáy */}
+      {isShowAddToCart && (
+        <div className="mt-auto flex justify-center items-center pt-2">
+          <button className="cursor-pointer flex-1 p-2 border border-[var(--color-primary)] text-[var(--color-primary)] rounded-xs hover:bg-[var(--color-primary)] hover:text-white transition-all">
+            Thêm vào giỏ hàng
+          </button>
+        </div>
+      )}
     </article>
   );
 });
