@@ -1,8 +1,34 @@
+import { useEffect, useState } from "react";
 import Accordion from "../accordion/Accordion";
 import { FilterSidebar, ProductCard, ProductSkeleton } from "../common";
 import SortDropdown from "../filter/SortDropdown";
+import ProductModal from "../product/ProductModal";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { I_Product } from "@/types/product";
+import { resetProductSelected } from "@/features/product/productSelectedSlice";
 
 export function DesktopCollectionLayout({ collection }: { collection: any }) {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<I_Product | null>(null);
+    
+    const dispatch = useAppDispatch();
+    const productSelected = useAppSelector((state) => state.productSelected);
+
+    useEffect(() => {
+        if (productSelected && productSelected.id) {
+            setSelectedProduct(productSelected);
+            setIsModalOpen(true);
+        }
+    }, [productSelected]);
+
+    // FUNCTIONS
+    function handleCloseModal() {
+        setIsModalOpen(false);
+        setSelectedProduct(null);
+        dispatch(resetProductSelected());
+    };
+
     return <div className="container mx-auto py-8 text-[var(--color-text)]">
         <Accordion>
             Nước hoa từ những ngày đầu đã được tạo ra là để phục vụ cho phái đẹp, vì thế dường như trong thế giới mùi hương, những sự lựa chọn cho nữ giới là phong phú và nhiều màu sắc hơn cả. Là do vậy, namperfume luôn muốn đem đến cho các quý cô xinh đẹp những lựa chọn tuyệt vời, từ quyến rũ, sang trọng, quyền lực đến nhẹ nhàng, ngây thơ, và không thể thiếu một chút gợi cảm lả lơi, ngả ngốn...
@@ -30,5 +56,6 @@ export function DesktopCollectionLayout({ collection }: { collection: any }) {
                 </div>
             </div>
         </div>
+        <ProductModal isOpen={isModalOpen} onClose={handleCloseModal} product={selectedProduct} />
     </div>;
 }

@@ -68,6 +68,8 @@ export default function ProductModal({
     </section>
   );
 
+  if (!product || !isOpen) return null;
+
   return (
     <AnimatePresence>
       {isOpen && product && (

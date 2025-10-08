@@ -22,7 +22,8 @@ import {
 import { I_Product } from "@/types/product";
 import { SectionMediaItem } from "@/types/media";
 import ProductModal from "@/components/product/ProductModal";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { resetProductSelected } from "@/features/product/productSelectedSlice";
 
 const brands = [
   { id: 1, name: "Gucci", image: "/brands/logo-brand-gucci.png" },
@@ -298,6 +299,8 @@ export default function Home() {
     bodycareHomecare: BODYCARE_HOMECARE_PRODUCTS,
     giftset: GIFTSET_PRODUCTS,
   })
+
+  const dispatch = useAppDispatch();
   const productSelected = useAppSelector((state) => state.productSelected);
 
   // HOOKS
@@ -326,6 +329,7 @@ export default function Home() {
   function handleCloseModal() {
     setIsModalOpen(false);
     setSelectedProduct(null);
+    dispatch(resetProductSelected());
   };
 
   function generateDummyData() {

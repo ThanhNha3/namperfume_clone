@@ -10,9 +10,13 @@ const productSelectedSlice = createSlice({
     // update product
     setProductSelected(state, action: PayloadAction<I_Product>) {
       return { ...action.payload }
+    },
+    // reset product
+    resetProductSelected() {
+      return { ...initialState }
     }
   }
 })
 
-export const { setProductSelected } = productSelectedSlice.actions
+export const { setProductSelected, resetProductSelected } = productSelectedSlice.actions
 export default productSelectedSlice.reducer
