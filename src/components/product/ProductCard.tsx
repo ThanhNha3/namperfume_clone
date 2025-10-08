@@ -21,7 +21,7 @@ export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = f
   return (
     <article
       key={`${item.id}_${item.name}`}
-      className={`border group min-w-[160px] max-w-[200px] ${isShowAddToCart ? "h-[370px]" : "h-[320px]"} flex-shrink-0 relative px-2 select-none will-change-transform`}
+      className={`group min-w-[160px] max-w-[200px] ${isShowAddToCart ? "h-[370px]" : "h-[320px]"} flex-shrink-0 relative px-2 select-none will-change-transform`}
     >
       {/* Icon Heart */}
       <button
