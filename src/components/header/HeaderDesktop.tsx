@@ -172,8 +172,8 @@ function InformationDropDown() {
                         <User size={22} className="text-gray-600" />
                     </div>
                     <div className="overflow-hidden">
-                        <p className="text-sm font-semibold text-[var(--color-text)]">Chào bạn,</p>
-                        <p className="text-sm text-[var(--color-primary)] clamp-2">
+                        <p className="text-sm font-semibold">Chào bạn,</p>
+                        <p className="text-sm clamp-2">
                             Sonny Nguyen
                         </p>
                     </div>
@@ -183,18 +183,18 @@ function InformationDropDown() {
                 <div className="text-sm text-[var(--color-text)]">
                     <Link
                         href="/account"
-                        className="block py-2 hover:text-[var(--color-primary)] border-t border-[var(--color-border)]"
+                        className="block py-2 border-t border-[var(--color-border)]"
                     >
                         Thông tin tài khoản
                     </Link>
                     <Link
                         href="/account/addresses"
-                        className="block py-2 hover:text-[var(--color-primary)] border-t border-[var(--color-border)]"
+                        className="block py-2 border-t border-[var(--color-border)]"
                     >
                         Danh sách địa chỉ
                     </Link>
                     <button
-                        className="w-full text-left py-2 border-t border-[var(--color-border)] hover:text-[var(--color-primary)]"
+                        className="w-full text-left py-2 border-t border-[var(--color-border)]"
                     >
                         Đăng xuất
                     </button>
