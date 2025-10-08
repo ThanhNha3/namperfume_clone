@@ -63,6 +63,102 @@ const categories: HeaderCategory[] = [
     { key: "son_moi", title: "Son Môi", link: "/collections/son-moi" },
 ];
 
+function CartDropDown() {
+    return <div
+        className="absolute right-0 top-full mt-2 w-[380px] bg-white border border-[var(--color-border)] rounded-md shadow-lg
+        hidden group-hover:block z-50"
+    >
+        <div className="p-4 max-h-[400px] overflow-y-auto">
+            {/* Cart item */}
+            <div className="flex gap-3 border-b border-[var(--color-border)] pb-3 mb-3 last:border-0">
+                <Image
+                    src="/products/p1.jpg"
+                    alt="Gucci Flora Gorgeous Magnolia"
+                    width={60}
+                    height={80}
+                    className="rounded-md object-cover"
+                />
+                <div className="flex-1 text-sm">
+                    <p className="font-medium text-[var(--color-text)]">Gucci Flora Gorgeous Magnolia</p>
+                    <p className="text-xs text-gray-500">Thương hiệu: Gucci</p>
+                    <p className="text-xs text-gray-500">Mã hàng: 110100204179</p>
+                    <p className="text-xs">Số lượng: 2</p>
+                </div>
+                <p className="text-[var(--color-primary)] font-semibold text-sm">6,600,000₫</p>
+            </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-[var(--color-border)] p-4">
+            <div className="flex justify-between text-sm font-semibold mb-2">
+                <p>Tổng (6 sản phẩm)</p>
+                <p className="text-[var(--color-primary)]">17,160,000₫</p>
+            </div>
+            <Link
+                href="/cart"
+                className="block text-center bg-[var(--color-primary)] text-white rounded-md py-2 font-medium hover:opacity-90 transition"
+            >
+                Xem giỏ hàng & Thanh toán
+            </Link>
+
+            <div className="mt-3 text-center text-xs text-gray-600 leading-tight">
+                <p><strong>SHIP NHANH 3H</strong></p>
+                <p>FREE SHIP mọi đơn hàng</p>
+                <p>Đơn hàng của bạn sẽ được ship nhanh nội thành HCM</p>
+            </div>
+        </div>
+    </div>
+}
+
+function LoginDropdown() {
+    return (
+        <div
+            className="login__dropdown absolute right-0 top-full mt-2 w-68 bg-white border border-[var(--color-border)] rounded-md shadow-lg 
+      hidden translate-y-2 z-50 group-hover:block"
+        >
+            <div className="p-4">
+                <div className="flex items-center gap-2 mb-4">
+                    <div><UserCircle color="var(--subtext-color)" size={24} /></div>
+                    <div>
+                        <p className="text-sm font-medium">Chào bạn</p>
+                        <p className="text-xs">Đăng nhập để tham gia với chúng tôi</p>
+                    </div>
+                </div>
+
+                <div className="flex gap-2 mb-3">
+                    <Link
+                        href="/auth/login"
+                        className="flex-1 text-center text-xs border rounded-md p-2 font-medium hover:bg-[var(--color-primary)] hover:text-white transition"
+                    >
+                        Đăng nhập
+                    </Link>
+                    <Link
+                        href="/auth/register"
+                        className="flex-1 text-center text-xs border rounded-md p-2 font-medium hover:bg-[var(--color-primary)] hover:text-white transition"
+                    >
+                        Đăng ký
+                    </Link>
+                </div>
+
+                <div className="border-t pt-2">
+                    <p className="text-xs mb-2 text-center">Hoặc đăng nhập với</p>
+
+                    <div className="flex flex-col gap-2">
+                        <button className="w-full flex items-center justify-center gap-2 border rounded-md py-2 hover:bg-gray-50">
+                            <Chrome className="text-red-600" size={18} />
+                            Đăng Nhập Với Google
+                        </button>
+                        <button className="w-full flex items-center justify-center gap-2 border rounded-md py-2 hover:bg-gray-50">
+                            <Facebook className="text-blue-600" size={18} />
+                            Đăng Nhập Với Facebook
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export default function HeaderDesktop() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
     const [categoryHover, setCategoryHover] = useState<string | null>(null);
@@ -112,51 +208,7 @@ export default function HeaderDesktop() {
                             <div className="group header__actions__item__login flex items-center gap-1 cursor-pointer">
                                 <User size={20} />
                                 <span>Đăng nhập</span>
-                                {/* Dropdown */}
-                                <div
-                                    className="login__dropdown absolute right-0 top-full mt-2 w-68 bg-white border border-[var(--color-border)] rounded-md shadow-lg 
-      hidden translate-y-2 z-50 group-hover:block"
-                                >
-                                    <div className="p-4">
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <div><UserCircle color="var(--subtext-color)" size={24} /></div>
-                                            <div>
-                                                <p className="text-sm font-medium">Chào bạn</p>
-                                                <p className="text-xs">Đăng nhập để tham gia với chúng tôi</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex gap-2 mb-3">
-                                            <Link
-                                                href="/auth/login"
-                                                className="flex-1 text-center text-xs border rounded-md p-2 font-medium hover:bg-[var(--color-primary)] hover:text-white transition"
-                                            >
-                                                Đăng nhập
-                                            </Link>
-                                            <Link
-                                                href="/auth/register"
-                                                className="flex-1 text-center text-xs border rounded-md p-2 font-medium hover:bg-[var(--color-primary)] hover:text-white transition"
-                                            >
-                                                Đăng ký
-                                            </Link>
-                                        </div>
-
-                                        <div className="border-t pt-2">
-                                            <p className="text-xs mb-2 text-center">Hoặc đăng nhập với</p>
-
-                                            <div className="flex flex-col gap-2">
-                                                <button className="w-full flex items-center justify-center gap-2 border rounded-md py-2 hover:bg-gray-50">
-                                                    <Chrome className="text-red-600" size={18} />
-                                                    Đăng Nhập Với Google
-                                                </button>
-                                                <button className="w-full flex items-center justify-center gap-2 border rounded-md py-2 hover:bg-gray-50">
-                                                    <Facebook className="text-blue-600" size={18} />
-                                                    Đăng Nhập Với Facebook
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <LoginDropdown />
                             </div>
                         </div>
 
@@ -175,50 +227,7 @@ export default function HeaderDesktop() {
                             </div>
 
                             {/* Cart dropdown */}
-                            <div
-                                className="absolute right-0 top-full mt-2 w-[380px] bg-white border border-[var(--color-border)] rounded-md shadow-lg
-        hidden group-hover:block z-50"
-                            >
-                                <div className="p-4 max-h-[400px] overflow-y-auto">
-                                    {/* Cart item */}
-                                    <div className="flex gap-3 border-b pb-3 mb-3">
-                                        <Image
-                                            src="/products/sample1.jpg"
-                                            alt="Gucci Flora Gorgeous Magnolia"
-                                            width={60}
-                                            height={80}
-                                            className="rounded-md object-cover"
-                                        />
-                                        <div className="flex-1 text-sm">
-                                            <p className="font-medium text-[var(--color-text)]">Gucci Flora Gorgeous Magnolia</p>
-                                            <p className="text-xs text-gray-500">Thương hiệu: Gucci</p>
-                                            <p className="text-xs text-gray-500">Mã hàng: 110100204179</p>
-                                            <p className="text-xs">Số lượng: 2</p>
-                                        </div>
-                                        <p className="text-[var(--color-primary)] font-semibold text-sm">6,600,000₫</p>
-                                    </div>
-                                </div>
-
-                                {/* Footer */}
-                                <div className="border-t p-4">
-                                    <div className="flex justify-between text-sm font-semibold mb-2">
-                                        <p>Tổng (6 sản phẩm)</p>
-                                        <p className="text-[var(--color-primary)]">17,160,000₫</p>
-                                    </div>
-                                    <Link
-                                        href="/cart"
-                                        className="block text-center bg-[var(--color-primary)] text-white rounded-md py-2 font-medium hover:opacity-90 transition"
-                                    >
-                                        Xem giỏ hàng & Thanh toán
-                                    </Link>
-
-                                    <div className="mt-3 text-center text-xs text-gray-600 leading-tight">
-                                        <p><strong>SHIP NHANH 3H</strong></p>
-                                        <p>FREE SHIP mọi đơn hàng</p>
-                                        <p>Đơn hàng của bạn sẽ được ship nhanh nội thành HCM</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CartDropDown />
                         </div>
                     </div>
 
