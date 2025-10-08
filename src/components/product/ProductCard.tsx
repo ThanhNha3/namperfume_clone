@@ -75,7 +75,7 @@ export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = f
             {item.brand}
           </h4>
         )}
-        <p className="text-sm text-[var(--color-text)] line-clamp-2 h-[35px]">
+        <p className="text-sm text-[var(--color-text)] clamp-2">
           {item.name}
         </p>
         <p className="text-[var(--color-primary)] font-semibold text-sm pt-2">

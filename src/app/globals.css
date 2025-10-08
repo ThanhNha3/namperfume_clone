@@ -1,10 +1,6 @@
 @import "tailwindcss";
-
 /* import SCSS */
-@use "@/styles/common/_index";
-
-@use "@/styles/main";
-
+@import "../styles/main.scss";
 
 :root {
   --background: #ffffff;

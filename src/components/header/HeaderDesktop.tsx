@@ -171,9 +171,11 @@ function InformationDropDown() {
                     <div className="p-2 border rounded-full">
                         <User size={22} className="text-gray-600" />
                     </div>
-                    <div>
+                    <div className="overflow-hidden">
                         <p className="text-sm font-semibold text-[var(--color-text)]">Chào bạn,</p>
-                        <p className="text-sm text-[var(--color-primary)] font-medium">ThemeSyntaxError</p>
+                        <p className="text-sm text-[var(--color-primary)] clamp-2">
+                            Sonny Nguyen sssssssssssssssssssssssssssssssss
+                        </p>
                     </div>
                 </div>
 
