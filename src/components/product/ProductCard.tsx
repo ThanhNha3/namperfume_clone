@@ -35,10 +35,10 @@ export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = f
         <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
           {item.badges.map((badge, i) => (
             <span
-              key={i}
-              className="bg-[var(--color-badge)] text-white text-[10px] px-1 py-0.5 rounded-xs shadow-sm"
+              key={badge?.id}
+              className={`bg-[var(--color-badge)] text-[var(--color-text)] text-white text-[10px] px-1 py-0.5 rounded-xs shadow-sm w-fit font-semibold ${i > 0 ? "mt-1" : ""}`}
             >
-              {badge}
+              {badge.label}
             </span>
           ))}
         </div>

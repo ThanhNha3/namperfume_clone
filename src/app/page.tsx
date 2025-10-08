@@ -70,7 +70,12 @@ const DEAL_THOM_PRODUCTS = [
     title: "Nước hoa Dior Sauvage EDP",
     subtitle: "100ml - Eau de Parfum",
     priceRange: "3.200.000₫",
-    badges: ["Yêu thích", "Bán chạy"],
+    badges: [{
+      id: 1, label: "Giảm 10%"
+    },
+    {
+      id: 2, label: "Bán chạy"
+    }],
     sizes: [{
       id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
@@ -92,7 +97,12 @@ const NEW_ARRIVAL_PRODUCTS = [
     shortDescription: " Nước hoa Chanel Bleu De Chanel EDT - Phiên bản Eau de Toilette",
     subtitle: "100ml - Eau de Toilette",
     priceRange: "2.800.000₫",
-    badges: ["Mới"],
+    badges: [{
+      id: 1, label: "Giảm 10%"
+    },
+    {
+      id: 2, label: "Bán chạy"
+    }],
     sizes: [{
       id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
@@ -114,7 +124,12 @@ const BEST_SELLER_PRODUCTS = [
     shortDescription: " Nước hoa Versace Eros Pour Homme - Phiên bản Eau de Toilette",
     subtitle: "100ml - Eau de Toilette",
     priceRange: "2.500.000₫",
-    badges: ["Bán chạy"],
+    badges: [{
+      id: 1, label: "Giảm 10%"
+    },
+    {
+      id: 2, label: "Bán chạy"
+    }],
     sizes: [{
       id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
@@ -136,7 +151,12 @@ const MINI_TRAVEL_SIZE_PRODUCTS = [
     shortDescription: " Nước hoa Gucci Guilty Pour Homme - Phiên bản mini 90ml",
     subtitle: "90ml - Eau de Toilette",
     priceRange: "2.700.000₫",
-    badges: ["Yêu thích"],
+    badges: [{
+      id: 1, label: "Giảm 10%"
+    },
+    {
+      id: 2, label: "Bán chạy"
+    }],
     sizes: [{
       id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
@@ -154,7 +174,12 @@ const BODYCARE_HOMECARE_PRODUCTS = [
     title: "Sữa tắm Bath & Body Works",
     subtitle: "295ml - Shower Gel",
     priceRange: "350.000₫",
-    badges: ["Yêu thích"],
+    badges: [{
+      id: 1, label: "Giảm 10%"
+    },
+    {
+      id: 2, label: "Bán chạy"
+    }],
     sizes: [{
       id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {
@@ -176,7 +201,12 @@ const GIFTSET_PRODUCTS = [
     title: "Giftset Nước hoa Dior",
     subtitle: "Bao gồm 3 món",
     priceRange: "4.500.000₫",
-    badges: ["Yêu thích", "Bán chạy"],
+    badges: [{
+      id: 1, label: "Giảm 10%"
+    },
+    {
+      id: 3, label: "Happy Woman's Day"
+    }],
     sizes: [{
       id: 1, label: "50ml", price: 2200000, oldPrice: 2500000, percentSale: 10, tags: ["Yêu thích"]
     }, {

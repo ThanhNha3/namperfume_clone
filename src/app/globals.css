@@ -13,6 +13,7 @@
   --color-border: #e5e5e5;
   --color-text-muted: #777777;
   --color-bg-muted: #898889;
+  --color-badge: var(--color-primary); /* Màu cam đỏ cho badge */
 
   /* footer */
   --color-footer-bg: #2d2d2d;      /* nền footer */
@@ -56,4 +57,17 @@ input[type="radio"] {
 
 .container {
     width: 1200px !important;
+}
+@media (max-width: 1280px) {
+    .container {
+        width: 100% !important;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100% !important;
+        padding: 0 10px;
+    }
 }

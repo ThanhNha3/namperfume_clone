@@ -8,7 +8,10 @@ export interface I_Product {
     subType?: string;       // phân loại sản phẩm (EDP, EDT, Parfum...)
     shortDescription?: string;   // mô tả ngắn
     thumbnail?: string;          // link ảnh chính
-    badges?: string[];    // danh sách badge (["Yêu thích", "Bán chạy",...])
+    badges?: {
+        id?: number;
+        label?: string;
+    }[];    // danh sách badge (["Yêu thích", "Bán chạy",...])
     sizes?: {
         id?: number;       // id size
         label?: string;    // nhãn size (10ml, 50ml, 100ml,...)
