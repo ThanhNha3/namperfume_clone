@@ -269,7 +269,6 @@ export default function HeaderDesktop() {
                                 <ShoppingCart className="header__actions__item__icon" size={20} />
                                 <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">3</span>
                             </div>
-
                             {/* Cart dropdown */}
                             <CartDropDown />
                         </div>
