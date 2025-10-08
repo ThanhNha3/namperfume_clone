@@ -159,6 +159,49 @@ function LoginDropdown() {
     )
 }
 
+function InformationDropDown() {
+    return (
+        <div
+            className="absolute right-0 top-full mt-2 w-60 bg-white border border-[var(--color-border)] rounded-md shadow-lg 
+            hidden group-hover:block translate-y-2 z-50"
+        >
+            <div className="p-4">
+                {/* Header */}
+                <div className="flex items-center gap-2 mb-3">
+                    <div className="p-2 border rounded-full">
+                        <User size={22} className="text-gray-600" />
+                    </div>
+                    <div>
+                        <p className="text-sm font-semibold text-[var(--color-text)]">Chào bạn,</p>
+                        <p className="text-sm text-[var(--color-primary)] font-medium">ThemeSyntaxError</p>
+                    </div>
+                </div>
+
+                {/* Menu */}
+                <div className="text-sm text-[var(--color-text)]">
+                    <Link
+                        href="/account"
+                        className="block py-2 hover:text-[var(--color-primary)] border-t"
+                    >
+                        Thông tin tài khoản
+                    </Link>
+                    <Link
+                        href="/account/addresses"
+                        className="block py-2 hover:text-[var(--color-primary)] border-t"
+                    >
+                        Danh sách địa chỉ
+                    </Link>
+                    <button
+                        className="w-full text-left py-2 border-t hover:text-[var(--color-primary)]"
+                    >
+                        Đăng xuất
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function HeaderDesktop() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
     const [categoryHover, setCategoryHover] = useState<string | null>(null);
@@ -208,7 +251,8 @@ export default function HeaderDesktop() {
                             <div className="group header__actions__item__login flex items-center gap-1 cursor-pointer">
                                 <User size={20} />
                                 <span>Đăng nhập</span>
-                                <LoginDropdown />
+                                {/* <LoginDropdown /> */}
+                                <InformationDropDown />
                             </div>
                         </div>
 
