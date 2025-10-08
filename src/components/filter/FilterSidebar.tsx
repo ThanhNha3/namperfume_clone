@@ -9,7 +9,7 @@ type FilterSectionProps = {
     showMore?: boolean;
 };
 
-const FilterSection = ({ title, options = [], showMore = false }: FilterSectionProps) => {
+const FilterSection = ({ title, options = [] }: FilterSectionProps) => {
     const [open, setOpen] = useState(true);
     const [expanded, setExpanded] = useState(false);
 
@@ -36,7 +36,7 @@ const FilterSection = ({ title, options = [], showMore = false }: FilterSectionP
                         </label>
                     ))}
 
-                    {showMore && options.length > 5 && (
+                    {options.length > 5 && (
                         <button
                             onClick={() => setExpanded(!expanded)}
                             className="text-sm text-[var(--subtext-color)]"
@@ -67,14 +67,12 @@ export function FilterSidebar() {
                     "Chanel",
                     "Dior",
                 ]}
-                showMore
             />
 
             <FilterSection title="Mức giá" options={["Dưới 1 triệu", "1 - 2 triệu", "2 - 3 triệu", "Trên 3 triệu"]} />
             <FilterSection title="Size" options={["10ml", "30ml", "50ml", "100ml"]} />
             <FilterSection title="Giới tính" options={["Nam", "Nữ", "Unisex"]} />
             <FilterSection
-                showMore={true}
                 title="Tông mùi gốc"
                 options={[
                     "Gỗ",
