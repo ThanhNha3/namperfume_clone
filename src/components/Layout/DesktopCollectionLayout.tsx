@@ -51,7 +51,7 @@ export function DesktopCollectionLayout({ collection }: { collection: any }) {
                     {collection.length === 0
                         ? Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
                         : collection.map((item: any, index: number) => (
-                            <ProductCard isShowAddToCart={true} key={`${item.id}-${index}`} item={item} />
+                            <ProductCard key={`${item.id}-${index}`} item={item} />
                         ))}
                 </div>
             </div>
