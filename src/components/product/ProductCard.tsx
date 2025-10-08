@@ -7,7 +7,7 @@ import { I_Product } from "@/types/product";
 import { Heart } from "lucide-react";
 import { setProductSelected } from "@/features/product/productSelectedSlice";
 
-export const ProductCard = memo(function ProductCard({ item }: { item: I_Product }) {
+export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = false }: { item: I_Product, isShowAddToCart?: boolean }) {
   const dispatch = useAppDispatch();
   const [isPending, startTransition] = useTransition();
 
@@ -21,7 +21,7 @@ export const ProductCard = memo(function ProductCard({ item }: { item: I_Product
   return (
     <article
       key={`${item.id}_${item.name}`}
-      className="group min-w-[160px] max-w-[200px] h-[320px] flex-shrink-0 relative px-2 select-none will-change-transform"
+      className={`border group min-w-[160px] max-w-[200px] ${isShowAddToCart ? "h-[370px]" : "h-[320px]"} flex-shrink-0 relative px-2 select-none will-change-transform`}
     >
       {/* Icon Heart */}
       <button
@@ -36,7 +36,7 @@ export const ProductCard = memo(function ProductCard({ item }: { item: I_Product
           {item.badges.map((badge, i) => (
             <span
               key={i}
-              className="bg-[var(--color-badge)] text-white text-[10px] px-1 py-0.5 rounded shadow-sm"
+              className="bg-[var(--color-badge)] text-white text-[10px] px-1 py-0.5 rounded-xs shadow-sm"
             >
               {badge}
             </span>
@@ -45,7 +45,7 @@ export const ProductCard = memo(function ProductCard({ item }: { item: I_Product
       )}
 
       {/* Product image */}
-      <div className="relative w-full h-48 flex items-center justify-center overflow-hidden rounded-md">
+      <div className="relative w-full h-48 flex items-center justify-center overflow-hidden rounded-xs">
         <Image
           src={item.thumbnail || "/placeholder.png"}
           alt={item.name || "Product Image"}
@@ -64,7 +64,7 @@ export const ProductCard = memo(function ProductCard({ item }: { item: I_Product
           disabled={isPending}
           className="absolute bottom-0 left-0 right-0 bg-[var(--color-primary)] text-white text-xs font-semibold py-1 opacity-0 group-hover:opacity-100 cursor-pointer transition-all duration-300 rounded-sm"
         >
-          {isPending ? "..." : "XEM NGAY"}
+          {isPending ? "..." : "XEM NHANH"}
         </button>
       </div>
 
@@ -85,6 +85,13 @@ export const ProductCard = memo(function ProductCard({ item }: { item: I_Product
           {`${item.sizes?.length} size${item.sizes?.length !== 1 ? "s" : ""}`}
         </p>
       </div>
+      {
+        isShowAddToCart && (
+          <div className="flex justify-center items-center mt-2">
+            <button className="cursor-pointer flex-1 p-2 border border-[var(--color-primary)] text-[var(--color-primary)] rounded-xs hover:bg-[var(--color-primary)] hover:text-white transition-all">Thêm vào giỏ hàng</button>
+          </div>
+        )
+      }
     </article>
   );
 });

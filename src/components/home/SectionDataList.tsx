@@ -15,7 +15,9 @@ export function SectionDataList<T extends I_Product | SectionMediaItem>({
   viewMoreLink,
   SkeletonComponentUI,
   ItemComponentUI,
+  canScroll = true,
 }: SectionListDataProps<T>) {
+  const ItemsPerLine = 6;
   const [visibleItems, setVisibleItems] = useState<T[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -60,7 +62,7 @@ export function SectionDataList<T extends I_Product | SectionMediaItem>({
   // click scroll
   const scrollByOne = (direction: "left" | "right") => {
     if (!containerRef.current) return;
-    const itemWidth = 200; 
+    const itemWidth = 200;
     containerRef.current.scrollBy({
       left: direction === "right" ? itemWidth : -itemWidth,
       behavior: "smooth",
@@ -69,6 +71,7 @@ export function SectionDataList<T extends I_Product | SectionMediaItem>({
 
   // drag logic
   const startDrag = (posX: number) => {
+    if (!canScroll) return;
     if (!containerRef.current) return;
     if (momentumId.current) cancelAnimationFrame(momentumId.current);
     isDragging.current = true;
@@ -135,7 +138,7 @@ export function SectionDataList<T extends I_Product | SectionMediaItem>({
   return (
     <section>
       {/* Header */}
-      <div className="section-header flex justify-between items-center mb-4">
+      <div className="section-header flex justify-between items-end mb-4">
         <h2 className="section-header__text text-xl font-semibold">{title}</h2>
         {viewMoreLink && (
           <a
@@ -150,14 +153,18 @@ export function SectionDataList<T extends I_Product | SectionMediaItem>({
       {/* Wrapper để nút dính sát slider */}
       <div className="relative">
         {/* Nút trái */}
-        <button className="indicator-btn left-0 translate-x-[-80%] hidden md:block" onClick={() => scrollByOne("left")}>
-          <ChevronLeft />
-        </button>
+        {
+          !canScroll ? null : (
+            <button className="indicator-btn left-0 translate-x-[-80%] hidden md:block" onClick={() => scrollByOne("left")}>
+              <ChevronLeft />
+            </button>
+          )
+        }
 
         {/* Scroll container */}
         <div
           ref={containerRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide cursor-grab h-max"
+          className={`flex gap-4 ${canScroll ? "overflow-x-auto scrollbar-hide cursor-grab h-max" : ""}`}
           onMouseDown={(e) => startDrag(e.pageX)}
           onMouseUp={stopDrag}
           onMouseLeave={stopDrag}
@@ -167,16 +174,20 @@ export function SectionDataList<T extends I_Product | SectionMediaItem>({
           onTouchMove={(e) => onDrag(e.touches[0].pageX)}
         >
           {items.length === 0
-            ? Array.from({ length: 6 }).map((_, i) => <SkeletonComponentUI key={i} />)
+            ? Array.from({ length: ItemsPerLine }).map((_, i) => <SkeletonComponentUI key={i} />)
             : visibleItems.map((item, index) => (
               <ItemComponentUI key={`${item.id}-${index}`} item={item} />
             ))}
         </div>
 
         {/* Nút phải */}
-        <button className="indicator-btn right-0 translate-x-[80%] hidden md:block" onClick={() => scrollByOne("right")}>
-          <ChevronRight />
-        </button>
+        {
+          !canScroll ? null : (
+            <button className="indicator-btn right-0 translate-x-[80%] hidden md:block" onClick={() => scrollByOne("right")}>
+              <ChevronRight />
+            </button>
+          )
+        }
       </div>
     </section>
   );

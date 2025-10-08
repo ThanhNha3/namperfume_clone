@@ -12,7 +12,7 @@ export interface I_SectionItem {
 
 // SECTION LIST PROPS
 export interface SectionListProps<T = I_SectionItem | I_Product | SectionMediaItem> {
-    title: string;
+    title: string | React.ReactNode;
     items: T[];
     viewMoreLink?: string;
 }
@@ -20,4 +20,5 @@ export interface SectionListProps<T = I_SectionItem | I_Product | SectionMediaIt
 export interface SectionListDataProps<T> extends SectionListProps {
     SkeletonComponentUI: React.ComponentType;
     ItemComponentUI: React.ComponentType<{ item: T }>;
+    canScroll?: boolean;
 }

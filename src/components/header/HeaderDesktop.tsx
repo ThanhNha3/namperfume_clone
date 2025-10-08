@@ -162,7 +162,7 @@ export default function HeaderDesktop() {
 
 
                         {/* Item 4: Heart */}
-                        <Link href="#" className="header__actions__item relative">
+                        <Link href="/wishlist" className="header__actions__item relative">
                             <Heart size={20} />
                             <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">0</span>
                         </Link>
