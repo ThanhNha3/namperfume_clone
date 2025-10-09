@@ -5,7 +5,7 @@ import { AccountSidebar } from "@/components/accountSidebar/AccountSidebar"
 import { AccountForm } from "@/components/accountForm/AccountForm"
 
 export default function AccountPage() {
-    const [activeTab, setActiveTab] = useState<"account" | "orders" | "address">("account")
+    const [activeTab, setActiveTab] = useState<string>("account")
 
     return (
         <div className="min-h-screen text-[var(--color-text)]">

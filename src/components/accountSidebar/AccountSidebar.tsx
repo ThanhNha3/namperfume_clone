@@ -2,50 +2,39 @@
 
 import { MapPin, Package, Heart, LogOut, User } from "lucide-react"
 interface AccountSidebarProps {
-    activeTab: "account" | "orders" | "address"
-    onTabChange: (tab: "account" | "orders" | "address") => void
+    activeTab: string;
+    onTabChange: (tab: string) => void
 }
 
 export function AccountSidebar({ activeTab, onTabChange }: AccountSidebarProps) {
+    console.log(activeTab);
+
+    const ACCOUNT_TABS = [
+        { label: "Thông tin cá nhân", icon: User, value: "account" },
+        { label: "Địa chỉ của tôi", icon: MapPin, value: "address" },
+        { label: "Đơn hàng", icon: Package, value: "orders" },
+        { label: "Sản phẩm yêu thích", icon: Heart, value: "wishlist" },
+        { label: "Đăng xuất", icon: LogOut, value: "logout" },
+    ]
+
     return (
         <aside className="bg-white rounded-lg p-6 h-fit">
             <h2 className="text-lg font-semibold mb-4 text-foreground">Tài khoản của tôi</h2>
             <nav className="space-y-2">
-                <button
-                    onClick={() => onTabChange("account")}
-                    className={
-                        "flex items-center gap-3 text-sm transition-colors py-2 w-full text-left"
-                    }
-                >
-                    <User className="h-4 w-4" />
-                    Thông tin cá nhân
-                </button>
-                <button
-                    onClick={() => onTabChange("address")}
-                    className={
-                        "flex items-center gap-3 text-sm transition-colors py-2 w-full text-left"
-                    }
-                >
-                    <MapPin className="h-4 w-4" />
-                    Địa chỉ của tôi
-                </button>
-                <button
-                    onClick={() => onTabChange("orders")}
-                    className={
-                        "flex items-center gap-3 text-sm transition-colors py-2 w-full text-left"
-                    }
-                >
-                    <Package className="h-4 w-4" />
-                    Đơn hàng
-                </button>
-                <button className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors py-2 w-full text-left">
-                    <Heart className="h-4 w-4" />
-                    Sản phẩm yêu thích
-                </button>
-                <button className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors py-2 w-full text-left">
-                    <LogOut className="h-4 w-4" />
-                    Đăng xuất
-                </button>
+                {ACCOUNT_TABS.map((tab) => (
+                    <button
+                        key={tab.value}
+                        onClick={() => {
+                            onTabChange(tab.value)
+                        }}
+                        className={
+                            `flex items-center gap-3 text-sm transition-colors py-2 w-full text-left p-2 rounded-md ${activeTab === tab.value ? "text-white bg-[var(--color-primary)]" : "text-muted-foreground hover:text-foreground"}`
+                        }
+                    >
+                        <tab.icon className="h-4 w-4" />
+                        {tab.label}
+                    </button>
+                ))}
             </nav>
         </aside>
     )
