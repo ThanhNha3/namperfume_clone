@@ -95,7 +95,6 @@ export function AccountForm() {
 
                     {/* Ngày sinh */}
                     <div className="col-span-2">
-                        <label className="text-sm text-gray-600 block mb-2">Ngày sinh</label>
                         {isEditing ? (
                             <div className="flex gap-6">
                                 {/* Ngày */}
