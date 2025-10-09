@@ -7,7 +7,6 @@ interface AccountSidebarProps {
 }
 
 export function AccountSidebar({ activeTab, onTabChange }: AccountSidebarProps) {
-    console.log(activeTab);
 
     const ACCOUNT_TABS = [
         { label: "Thông tin cá nhân", icon: User, value: "account" },

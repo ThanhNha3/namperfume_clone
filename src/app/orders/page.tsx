@@ -41,6 +41,15 @@ const orders = [
         total: "2.750.000₫",
         date: "20/09/2025",
     },
+    {
+        id: "DH004",
+        status: "Đã trả hàng",
+        productName: "Chanel Chance Eau Tendre",
+        image: "/products/p1.jpg",
+        quantity: 1,
+        total: "2.750.000₫",
+        date: "20/09/2025",
+    },
 ];
 
 export default function OrdersPage() {
@@ -53,6 +62,7 @@ export default function OrdersPage() {
         { label: "Đang giao hàng", color: "text-yellow-600" },
         { label: "Đã giao", color: "text-green-600" },
         { label: "Đã hủy", color: "text-red-600" },
+        { label: "Đã trả hàng", color: "text-gray-500" },
     ];
 
     return (
@@ -107,8 +117,8 @@ export default function OrdersPage() {
                                 </p>
                                 <button className="text-[var(--color-accent-gold)] text-sm mt-1 hover:underline"
                                     onClick={() => {
-                                        
-                                     }}
+
+                                    }}
                                 >
                                     <Link href={`/order-detail/${order.productName}`}>
                                         Xem chi tiết

@@ -48,6 +48,8 @@ export default function OrderDetailPage() {
         return "text-green-600";
       case "Đã hủy":
         return "text-red-600";
+      case "Đã trả hàng":
+        return "text-gray-500";
       default:
         return "text-gray-500";
     }
