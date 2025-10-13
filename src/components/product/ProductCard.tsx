@@ -6,9 +6,11 @@ import { useAppDispatch } from "@/store/hooks";
 import { I_Product } from "@/types/product";
 import { Heart } from "lucide-react";
 import { setProductSelected } from "@/features/product/productSelectedSlice";
+import { useRouter } from 'next/navigation'
 
 export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = false }: { item: I_Product, isShowAddToCart?: boolean }) {
   const dispatch = useAppDispatch();
+  const router = useRouter()
   const [isPending, startTransition] = useTransition();
 
   const handleSelectProduct = useCallback(() => {
@@ -18,10 +20,18 @@ export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = f
     });
   }, [dispatch, item]);
 
+  const handleNavigateToProductDetail = useCallback(() => {
+    // Dùng React transition để tránh block UI (giảm INP)
+    startTransition(() => {
+      router.push(`/products/${item.name.replace(/\s+/g, '-').toLowerCase()}`);
+    });
+  }, [dispatch, item]);
+
   return (
     <article
       key={`${item.id}_${item.name}`}
       className={`group min-w-[160px] max-w-[200px] ${isShowAddToCart ? "h-[370px]" : "h-[320px]"} flex flex-col flex-shrink-0 relative px-2 select-none will-change-transform`}
+      onClick={handleNavigateToProductDetail}
     >
       {/* Icon Heart */}
       <button
@@ -35,7 +45,7 @@ export const ProductCard = memo(function ProductCard({ item, isShowAddToCart = f
         <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
           {item.badges.map((badge, i) => (
             <span
-              key={badge?.id}
+              key={badge.id}
               className={`bg-[var(--color-badge)] text-[var(--color-text)] text-white text-[10px] px-1 py-0.5 rounded-xs shadow-sm w-fit font-semibold ${i > 0 ? "mt-1" : ""}`}
             >
               {badge.label}
